@@ -8,9 +8,10 @@ class BoardAdmin(admin.ModelAdmin):
     list_filter = ['owner']
     search_fields = ['name']
     fieldsets = (
-        (_("general").title(), {
+        (None, {
             "fields": (
                 'name', 'owner',
+                'description',
             ),
         }),
     )
