@@ -8,7 +8,7 @@ body {
     flex-direction: column;
     margin: 0; padding: 0;
     min-height: 100vh;
-    
+    overflow-x:hidden;
 }
 
 header {
@@ -25,6 +25,7 @@ header .logo {
 }
 
 header ul.nav {
+    background-color: #9999999f;
     display: flex;
     flex-direction: row;
     list-style-type: none;
@@ -35,14 +36,14 @@ header ul.nav {
 }    
 
 header ul.nav li a, header ul.nav form button {
-    background-color: #23812b;
+    background-color: #124516;
     display: block;
     margin: 0;
     padding: 0.5rem;
     border: 0;
-    border-bottom: 3px solid #022d02;
+    border-bottom: 3px solid #124516;
     cursor: pointer;
-    color: #a4cf90;
+    color: #b1c3a9;
     font-size: 100%;
     border-radius: 0.5rem;
     font-weight: 1000;
@@ -50,8 +51,8 @@ header ul.nav li a, header ul.nav form button {
 
 header ul.nav li a:hover, header ul.nav form button:hover {
     background-color: #b0dc91;
-    border-bottom: 2px solid #00cc4e;
-    color: #00cc8b;
+    border-bottom: 2px solid #00cc33;
+    color: #00cc41;
     text-decoration: none;
 }
 
@@ -62,34 +63,65 @@ main {
 }
 
 footer {
-    background-color: #093b06;
+    border-top: 5px solid #022c02; 
+    background-color: #105b0c;
+    border-bottom: 5px solid #022c02; 
 }
 
 a {
-    color: #008836;
+    color: #008802;
     text-decoration: none;
     font-weight: 1000;
 }
 
 a:hover {
-    color: #6db426;
+    color: #74a840;
     text-decoration: none;
 }
 
-h1, h3, h4, h5, h6 {
-    background-color: #42a972;
+h1, h4, h5, h6 {
+    background-color: #367832;
     border-color: 1px solid #9999999f;
     padding: 0.5rem;
     margin: 1rem 0;
 }
 
+h1 {
+    background-color: #367832;
+    font-size: 24px;
+    font-weight: 1000;
+    text-indent: 100px;
+    color: #76b426;
+    border-bottom: 5px solid #022c02;  
+    border-top: 5px solid #022c02; 
+}
+
 h2 {   
+    background-color: #9999999f;
     padding: 0.5rem;
     margin: 1rem 0;
     font-size: 90%;
 }
 
-h1:first-child, h2:first-child, h3:first-child, 
+h3 {
+    margin: -1.1%;
+    padding-left: 350px;
+    padding-right: 350px; 
+    font-size: 20px;
+    font-weight: 1000;
+    text-indent: 10px;
+    text-align: center;
+    color: #182715;
+    text-align: justify;
+}
+
+img {
+    border-radius: 50%;
+    padding-right: 400px;
+    padding-left: 100px;
+  }
+
+h1:first-child, h2:first-child, 
 h4:first-child, h5:first-child, h6:first-child {
     margin-top: 0;
 }
@@ -104,6 +136,7 @@ main ul li {
 }
 
 main ul li.list-table-header {
+    background-color: #9999999f;
     padding-bottom: 0.5rem;
 }
 
@@ -155,6 +188,7 @@ div.messages {
 }
 
 header form select {
+    background-color: #c0ddb8;
     margin: 1rem;
     font-size: 75%;
 }
@@ -179,7 +213,7 @@ main form select {
 
 main form button {
     color: black;
-    background-color: #4a9555;
+    background-color: #163f1d;
     outline: solid;
     border: 1 px solid #010c06;
     border-bottom: 2px solid #040404;
@@ -200,7 +234,7 @@ main form .helptext {
 
 button, .button {
     color: black;
-    background-color: #6c954a;
+    background-color: #274013;
     outline: solid;
     border: 1 px solid #010c07;
     border-bottom: 2px solid #040404;
@@ -214,7 +248,7 @@ button, .button {
 
 button:hover, .button:hover {
     color: black;
-    background-color: #637746;
+    background-color: #7e8a6d;
     border-bottom: 2px solid #0e0f0e;
 }
 
@@ -250,10 +284,10 @@ ul.dashboard li .stat {
     display: block;
     text-align: center;
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 100;
     margin: 1rem;
     padding: 0.5rem;
-    background-color: #ffffff9f;
+    background-color: #9999999f;
     border-radius: 5rem;
     min-width: 7rem;
 }
@@ -263,11 +297,11 @@ ul.dashboard li a:hover {
 }
 
 ul.dashboard li a:hover h3 {
-    background-color: #aaaaaa7f;
+    background-color: #9999999f;
 }
 
 .user-content {
-    background-color: #ffffff7f;
+    background-color: #9999999f;
     border: 2px solid #999999;
     border-radius: 1rem;
     margin: 1rem;

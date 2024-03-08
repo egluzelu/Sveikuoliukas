@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}sveikuoliukas{% endblock title %}</title>
+    <title>{% block title %}welcome to forum "Sveikuoliukas"!{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="icon" type="image/png" href="{% static "img/flower-icon.png" %}">
 </head>
@@ -47,8 +47,8 @@
     <main>{% block content %}{% endblock content %}</main>
     <footer>
         {% block footer %}{% endblock footer %}
-        <p>&copy; Sveikuoliukas
-            <a style="float:right;"> "{% trans "I am rich, because I`m healthy!"|capfirst %}" </a>
+        <p>&#9752; Sveikuoliukas
+            <a style="float:right;"> "{% trans "I`m rich, because I`m healthy!"|capfirst %}" </a>
         </p>
     </footer>
 </body>
