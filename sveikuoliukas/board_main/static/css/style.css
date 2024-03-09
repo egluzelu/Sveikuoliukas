@@ -1,5 +1,5 @@
 body {
-    background-color: #9999999f;
+    backdrop-filter: contrast(10%) brightness(150%);
     background-image: url('/static/images/main_picture.png');
     background-size: contain;
     font-family: sans-serif;
@@ -8,11 +8,9 @@ body {
     flex-direction: column;
     margin: 0; padding: 0;
     min-height: 100vh;
-    overflow-x:hidden;
 }
 
 header {
-    background-color: #9999999f;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -25,7 +23,6 @@ header .logo {
 }
 
 header ul.nav {
-    background-color: #9999999f;
     display: flex;
     flex-direction: row;
     list-style-type: none;
@@ -50,15 +47,14 @@ header ul.nav li a, header ul.nav form button {
 }
 
 header ul.nav li a:hover, header ul.nav form button:hover {
-    background-color: #b0dc91;
-    border-bottom: 2px solid #00cc33;
-    color: #00cc41;
+    background-color: #88c75b;
+    border-bottom: 2px solid #074918;
+    color: #02270e;
     text-decoration: none;
 }
 
 main {
     flex-grow: 1;
-    background-color: #9999999f;
     line-height: normal;
 }
 
@@ -75,13 +71,13 @@ a {
 }
 
 a:hover {
-    color: #74a840;
+    color: #42671d;
     text-decoration: none;
 }
 
 h1, h4, h5, h6 {
     background-color: #367832;
-    border-color: 1px solid #9999999f;
+    border-color: 1px solid rgba(3, 51, 8, 0.624);
     padding: 0.5rem;
     margin: 1rem 0;
 }
@@ -97,7 +93,6 @@ h1 {
 }
 
 h2 {   
-    background-color: #9999999f;
     padding: 0.5rem;
     margin: 1rem 0;
     font-size: 90%;
@@ -117,7 +112,7 @@ h3 {
 
 img {
     border-radius: 50%;
-    padding-right: 400px;
+    padding-right: 100px;
     padding-left: 100px;
   }
 
@@ -132,11 +127,10 @@ p, main ul {
 }
 
 main ul li {
-    border-bottom: 1px dotted #9999999f;
+    border-bottom: 1px dotted #0b39039f;
 }
 
 main ul li.list-table-header {
-    background-color: #9999999f;
     padding-bottom: 0.5rem;
 }
 
@@ -160,7 +154,8 @@ div.messages {
 .message, ul.errorlist {
     padding: 0.5rem;
     margin: 0;
-    border-bottom: 1px solid #9999999f;
+    border-bottom: 1px solid #0b2d059f;
+    background-color: #999999c2;
 }
 
 .message-debug {
@@ -188,7 +183,6 @@ div.messages {
 }
 
 header form select {
-    background-color: #c0ddb8;
     margin: 1rem;
     font-size: 75%;
 }
@@ -213,7 +207,7 @@ main form select {
 
 main form button {
     color: black;
-    background-color: #163f1d;
+    background-color: #346e3d;
     outline: solid;
     border: 1 px solid #010c06;
     border-bottom: 2px solid #040404;
@@ -233,8 +227,7 @@ main form .helptext {
 
 
 button, .button {
-    color: black;
-    background-color: #274013;
+    color: #277638;
     outline: solid;
     border: 1 px solid #010c07;
     border-bottom: 2px solid #040404;
@@ -248,7 +241,7 @@ button, .button {
 
 button:hover, .button:hover {
     color: black;
-    background-color: #7e8a6d;
+    background-color: #6a8544;
     border-bottom: 2px solid #0e0f0e;
 }
 
@@ -287,7 +280,6 @@ ul.dashboard li .stat {
     font-weight: 100;
     margin: 1rem;
     padding: 0.5rem;
-    background-color: #9999999f;
     border-radius: 5rem;
     min-width: 7rem;
 }
@@ -297,11 +289,10 @@ ul.dashboard li a:hover {
 }
 
 ul.dashboard li a:hover h3 {
-    background-color: #9999999f;
+    background-color: #999999c2;
 }
 
 .user-content {
-    background-color: #9999999f;
     border: 2px solid #999999;
     border-radius: 1rem;
     margin: 1rem;
@@ -312,3 +303,4 @@ ul.dashboard li a:hover h3 {
 .pagination li {
     display: inline;
 }
+
