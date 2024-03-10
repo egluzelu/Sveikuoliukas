@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{{ block.super }} | {{ blog }}{% endblock title %}
+{% block content %}
+{% if comment.owner == request.user or request.user.is_superuser %}
+    <p>
+        <a class="button" href="{% url "comment_update" pk=post.pk %}">{% trans "edit"|capfirst %}</a>
+    </p>
+{% endif %}
+<p>{% trans "owner"|capfirst %}: {{ comment.owner }} 
+    {% if comment.owner.profile.picture %}
+    <img src="{{ comment.owner.profile.picture.url }}" alt={% trans "profile Picture"|title %} width="150">
+    {% endif %}
+</p>
+<p>{{ comment.body }}</p>
+<p> {% if comment.image %}
+    <img src="{{ comment.image.url }}" alt={% trans "comment Image"|title %} width="250">
+    {% endif %}
+</p>
+<p>{% trans "created"|capfirst %}: {{ comment.created_at }}{% if comment.created_at != comment.updated_at %},
+    {% trans "updated" %}: {{ comment.updated_at }}
+{% endif %}
+</p>
+{% endblock content %}
+

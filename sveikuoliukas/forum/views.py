@@ -9,10 +9,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
-from . import models, forms
-from django.urls import reverse
+from . import models
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .forms import CommentForm
 
 
 class PostCreateView(LoginRequiredMixin, generic.CreateView):
@@ -78,7 +79,52 @@ def post_list(request: HttpRequest) -> HttpResponse:
     return render(request, 'forum/post_list.html', context)
 
 
-def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
-    return render(request, 'forum/post_detail.html', {
-        'post': get_object_or_404(models.Post, pk=pk),
-    })
+class PostDetailView(generic.DetailView):
+    model = models.Post
+    template_name = 'forum/post_detail.html'
+    fields = ('name', 'description', 'image')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
+    
+
+class CommentListView(generic.ListView):
+    model = models.Comment
+    template_name = 'forum/comment_list.html'
+    fields = ('name', 'description', 'image')
+
+    def get_queryset(self):
+        post = get_object_or_404(models.Post, pk=self.kwargs['pk'])
+        return models.Comment.objects.filter(post=post)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post'] = get_object_or_404(models.Post, pk=self.kwargs['pk'])
+        return context
+    
+
+class CommentDetailView(generic.DetailView):
+    model = models.Comment
+    template_name = 'forum/comment_detail.html'
+    fields = ('body', 'image')
+    context_object_name = 'comment' 
+
+
+class CommentCreateView(LoginRequiredMixin, generic.CreateView):
+    model = models.Comment
+    template_name = 'forum/comment_create.html'
+    form_class = CommentForm
+
+    def form_valid(self, form):
+        post = get_object_or_404(models.Post, pk=self.kwargs['pk'])
+        form.instance.post = post
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+    
+    def get_success_url(self) -> str:
+        messages.success(self.request, 
+            _('comment created succesfully').capitalize())
+        return reverse('post_detail', kwargs={'pk': self.kwargs['pk']})
+

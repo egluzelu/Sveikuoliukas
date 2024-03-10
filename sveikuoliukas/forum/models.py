@@ -19,18 +19,26 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
         related_name="comments",
     )
-    description = models.TextField(_("description"), blank=True, max_length=10000)
+    body = models.TextField(_("body"), max_length=10000, blank=False, null=True)
     image = models.ImageField(_("image"), upload_to='comment_images/', blank=True, null=True)
     created_at = models.DateTimeField(_("created at"), auto_now_add=True, db_index=True, null=True)
     updated_at = models.DateTimeField(_("updated at"), auto_now=True, db_index=True, null=True)
-
-    def __str__(self):
-        return self.description
 
     class Meta:
         verbose_name = _("comment")
         verbose_name_plural = _("comments")
         ordering = ['-created_at']
+
+    def __str__(self):
+        return "{} {} {}".format(
+            self.post,
+            _("commented by"),
+            self.owner,
+        )
+    
+    def get_absolute_url(self):
+        return reverse("comment_detail", kwargs={"pk": self.pk})
+
 
 
 class Post(models.Model):

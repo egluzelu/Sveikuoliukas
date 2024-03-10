@@ -25,4 +25,25 @@ class PostAdmin(admin.ModelAdmin):
     )
 
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['owner', 'created_at']
+    list_display_links = ['owner']
+    list_filter = ['owner']
+    search_fields = ['body', 'owner__last_name', 'owner__username']
+    readonly_fields = ['created_at', 'updated_at']
+    fieldsets = (
+        (_("general").title(), {
+            "fields": (
+                'owner',
+                'body',
+            ),
+        }),
+        (_("temporal tracking").title(), {
+            "fields": (
+                ('created_at', 'updated_at'),
+            ),
+        }),
+    )
+
 admin.site.register(models.Post, PostAdmin)
+admin.site.register(models.Comment, CommentAdmin)

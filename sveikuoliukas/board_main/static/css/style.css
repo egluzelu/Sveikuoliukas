@@ -127,7 +127,7 @@ p, main ul {
 }
 
 main ul li {
-    border-bottom: 1px dotted #0b39039f;
+    border-bottom: 5px solid #0b39039f;
 }
 
 main ul li.list-table-header {
@@ -305,3 +305,22 @@ ul.dashboard li a:hover h3 {
     display: inline;
 }
 
+.post {
+    border: 15px groove #062c0e;
+}
+
+.comment {
+    border: 10px groove #369f4b;
+}
+
+.post img {
+    border-radius: 8px;
+}
+
+.comment img {
+    border-radius: 8px;
+}
+
+.style2 img {
+    border-radius: 8px;
+}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% trans "create a comment at"|capfirst %} {{ block.super }}{% endblock title %}
+{% block content %}
+<h1>{% trans "create a comment"|capfirst %}</h1>
+<form method="post" action="{{ request.path }}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><button type="submit">{% trans "create"|capfirst %}</button></p>
+    <p> {% if comment.image %}
+        <img src="{{ comment.image.url }}" alt={% trans "comment Image"|title %} width="250">
+        {% endif %}
+    </p>
+</form>
+{% endblock content %}
+
+

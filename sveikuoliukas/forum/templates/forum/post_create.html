@@ -2,13 +2,16 @@
 {% block title %}{% trans "create a post at"|capfirst %} {{ block.super }}{% endblock title %}
 {% block content %}
 <h1>{% trans "create a post"|capfirst %}</h1>
-<form method="post" action="{{ request.path }}", enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <p><button type="submit">{% trans "create"|capfirst %}</button></p>
-    <p> {% if post.image %}
-        <img src="{{ post.image.url }}" alt={% trans "post Image"|title %} width="250">
-        {% endif %}
-    </p>
+<form method="post" action="{{ request.path }}" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <p><button type="submit">{% trans "create"|capfirst %}</button></p>
+  <p> {% if post.image %}
+      <img src="{{ post.image.url }}" alt={% trans "cpostt Image"|title %} width="250">
+      {% endif %}
+  </p>
 </form>
 {% endblock content %}
+
+
+
