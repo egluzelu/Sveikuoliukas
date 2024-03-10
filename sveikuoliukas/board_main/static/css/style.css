@@ -227,7 +227,8 @@ main form .helptext {
 
 
 button, .button {
-    color: #277638;
+    background-color: #589636;
+    color: #0d2c15;
     outline: solid;
     border: 1 px solid #010c07;
     border-bottom: 2px solid #040404;

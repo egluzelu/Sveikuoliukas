@@ -1,0 +1,55 @@
+{% extends "base.html" %}{% load i18n %} {% load static %}
+{% block title %}{{ block.super }} {% trans "list" %}{% endblock title %}
+{% block content %}
+<h1>{% trans "posts"|capfirst %}</h1>
+<a class="button" style="float:right;" href="{% url "post_create" %}">{% trans "create new post"|capfirst %}</a>
+<div class="toolbar">
+    <form method="get" action="{{ request.path }}">
+        <input type="text" name="search_name" 
+        value="{{ request.GET.search_name }}"
+        placeholder="{% trans 'search by name' %}...">
+        <button type="submit">&#128269;</button>
+    </form>
+</div>
+
+{% if post_list.has_other_pages %}
+        <ul class="pagination">
+          {% if post_list.has_previous %}
+            <li><a href="?page={{ post_list.previous_page_number }}{% if request.GET.search_name %}&search_name={{ request.GET.search_name }}{% endif %}">&laquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+          {% for i in post_list.paginator.page_range %}
+            {% if post_list.number == i %}
+              <li class="active"><span>{{ i }} <span class="sr-only"></span></span></li>
+            {% else %}
+              <li><a href="?page={{ i }}{% if request.GET.search_name %}&search_name={{ request.GET.search_name }}{% endif %}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if post_list.has_next %}
+            <li><a href="?page={{ post_list.next_page_number }}{% if request.GET.search_name %}&search_name={{ request.GET.search_name }}{% endif %}">&raquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+          {% endif %}
+        </ul>
+        {% endif %}
+
+        {% for post in post_list %}
+        <p><img src="{% static 'images/line_picture.png' %}" width="900"></p>
+        <ul class="style2">
+          {% if post.owner.profile.picture %}
+            <img src="{{ post.owner.profile.picture.url }}" alt={% trans "profile Picture"|title %} width="100">
+            {% endif %}
+        </ul>
+        <ul class="style2"> Blog maker:
+          <a href="{% url "user_detail" post.owner.username %}">{{ post.owner }}</a> 
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          Post name: <a href="{% url "post_detail" post.pk %}"> {{ post.name }} </a>
+        </ul>
+        <ul class="style2"> Posted:
+          {{ post.updated_at }}
+        </ul>
+        {% endfor %}  
+{% endblock content %}
+
+

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'board_main',
     'user_profile',
+    'forum',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

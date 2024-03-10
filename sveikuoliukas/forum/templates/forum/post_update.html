@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% trans "editing"|capfirst %} {{ post.name }} | {{ block.super }}{% endblock title %}
+{% block content %}
+<h1>{% trans "editing post"|capfirst %} {{ post.name }}</h1>
+<form method="post" action="{{ request.path }}", enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><button type="submit">{% trans "confirm"|capfirst %}</button></p>
+    <p> {% if post.image %}
+        <img src="{{ post.image.url }}" alt={% trans "post Image"|title %} width="250">
+        {% endif %}
+    </p>
+</form>
+{% endblock content %}

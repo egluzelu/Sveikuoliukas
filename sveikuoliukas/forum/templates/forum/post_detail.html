@@ -1,0 +1,25 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{{ block.super }} | {{ blog }}{% endblock title %}
+{% block content %}
+<h1> {{ post.name }}</h1>
+<a class="button" style="float:right;" href="{% url "post_create" %}">{% trans "create new post"|capfirst %}</a>
+{% if post.owner == request.user or request.user.is_superuser %}
+    <p>
+        <a class="button" href="{% url "post_update" post.pk %}">{% trans "edit"|capfirst %}</a>
+    </p>
+{% endif %}
+<p>{% trans "owner"|capfirst %}: {{ post.owner }} 
+    {% if post.owner.profile.picture %}
+    <img src="{{ post.owner.profile.picture.url }}" alt={% trans "profile Picture"|title %} width="150">
+    {% endif %}
+</p>
+<p>{{ post.description }}</p>
+<p> {% if post.image %}
+    <img src="{{ post.image.url }}" alt={% trans "post Image"|title %} width="250">
+    {% endif %}
+</p>
+<p>{% trans "created"|capfirst %}: {{ post.created_at }}{% if post.created_at != post.updated_at %},
+    {% trans "updated" %}: {{ post.updated_at }}
+{% endif %}
+</p>
+{% endblock content %}
