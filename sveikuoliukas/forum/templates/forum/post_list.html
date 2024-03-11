@@ -11,10 +11,10 @@
         <button type="submit">&#128269;</button>
     </form>
 </div>
-
 {% if post_list.has_other_pages %}
+
         <ul class="pagination">
-          {% if post_list.has_previous %}
+          {% if post_list.has_previous %}   
             <li><a href="?page={{ post_list.previous_page_number }}{% if request.GET.search_name %}&search_name={{ request.GET.search_name }}{% endif %}">&laquo;</a></li>
           {% else %}
             <li class="disabled"><span>&laquo;</span></li>

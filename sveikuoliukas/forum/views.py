@@ -43,7 +43,7 @@ class PostUpdateView(LoginRequiredMixin,
     def get_success_url(self) -> str:
         messages.success(self.request, 
             _('post updated succesfully').capitalize())
-        return reverse('post_list')
+        return reverse('post_detail', args=[self.object.pk])
 
     def test_func(self) -> bool | None:
         return self.get_object().owner == self.request.user or self.request.user.is_superuser
@@ -86,7 +86,20 @@ class PostDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        page = self.request.GET.get('page', 1)
+        comments_queryset = models.Comment.objects.filter(post=self.object)
+        paginator = Paginator(comments_queryset, 5)
+
+        try:
+            comments = paginator.page(page)
+        except PageNotAnInteger:
+            comments = paginator.page(1)
+        except EmptyPage:
+            comments = paginator.page(paginator.num_pages)
+
+        context['comment_list'] = comments
         context['comment_form'] = CommentForm()
+
         return context
     
 
@@ -94,6 +107,7 @@ class CommentListView(generic.ListView):
     model = models.Comment
     template_name = 'forum/comment_list.html'
     fields = ('name', 'description', 'image')
+    paginate_by = 5
 
     def get_queryset(self):
         post = get_object_or_404(models.Post, pk=self.kwargs['pk'])
@@ -103,14 +117,7 @@ class CommentListView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['post'] = get_object_or_404(models.Post, pk=self.kwargs['pk'])
         return context
-    
-
-class CommentDetailView(generic.DetailView):
-    model = models.Comment
-    template_name = 'forum/comment_detail.html'
-    fields = ('body', 'image')
-    context_object_name = 'comment' 
-
+        
 
 class CommentCreateView(LoginRequiredMixin, generic.CreateView):
     model = models.Comment
@@ -127,4 +134,26 @@ class CommentCreateView(LoginRequiredMixin, generic.CreateView):
         messages.success(self.request, 
             _('comment created succesfully').capitalize())
         return reverse('post_detail', kwargs={'pk': self.kwargs['pk']})
+    
 
+class CommentDetailView(generic.DetailView):
+    model = models.Comment
+    template_name = 'forum/comment_detail.html'
+    fields = ('body', 'image')
+
+
+class CommentUpdateView(LoginRequiredMixin,
+        UserPassesTestMixin,
+        generic.UpdateView,
+    ):
+    model = models.Comment
+    template_name = 'forum/comment_update.html'
+    fields = ('body', 'image')
+
+    def get_success_url(self) -> str:
+        messages.success(self.request, 
+            _('comment updated succesfully').capitalize())
+        return reverse('post_detail', args=[self.get_object().post.pk])
+
+    def test_func(self) -> bool | None:
+        return self.get_object().owner == self.request.user or self.request.user.is_superuser

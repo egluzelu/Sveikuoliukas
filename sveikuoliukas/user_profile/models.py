@@ -19,11 +19,3 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         return reverse("user_detail_current", kwargs={"pk": self.pk})
-
-    def save(self, *args, **kwargs) -> None:
-        super().save(*args, **kwargs)
-        if self.picture and os.path.exists(self.picture.path):
-            image = Image.open(self.picture.path)
-            if image.size[0] > 400 or image.size[1] > 300:
-                image.resize((400, 300))
-                image.save(self.picture.path)

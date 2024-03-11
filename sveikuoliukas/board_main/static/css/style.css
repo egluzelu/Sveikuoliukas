@@ -110,12 +110,6 @@ h3 {
     text-align: justify;
 }
 
-img {
-    border-radius: 50%;
-    padding-right: 100px;
-    padding-left: 100px;
-  }
-
 h1:first-child, h2:first-child, 
 h4:first-child, h5:first-child, h6:first-child {
     margin-top: 0;
@@ -127,7 +121,7 @@ p, main ul {
 }
 
 main ul li {
-    border-bottom: 5px solid #0b39039f;
+    border-bottom: 3px solid #0b39039f;
 }
 
 main ul li.list-table-header {
@@ -303,18 +297,33 @@ ul.dashboard li a:hover h3 {
 
 .pagination li {
     display: inline;
+    margin-right: 1.5%;
 }
 
 .post {
     border: 15px groove #062c0e;
+    font-size: 30px;
+    font-weight: 30px;
+    text-align: justify;
+    width: 1200px;
+    margin-left: 155px;
+    box-sizing: border-box;
 }
 
 .comment {
     border: 10px groove #369f4b;
+    font-size: 20px;
+    font-weight: 20px;
+    text-align: justify;
+    width: 1000px;
+    margin-left: 250px;
+    box-sizing: border-box;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
-.post img {
-    border-radius: 8px;
+img {
+    border-radius: 15px;
 }
 
 .comment img {
@@ -322,5 +331,48 @@ ul.dashboard li a:hover h3 {
 }
 
 .style2 img {
-    border-radius: 8px;
+    border-radius: 4px;
+}
+
+.slide-container {
+    position: relative;
+    max-width: 50%;
+    margin: auto;
+    overflow: hidden;
+}
+  
+.mySlides {
+    display: none;
+}
+  
+.mySlides img {
+    width: 100%;
+    height: auto;
+}
+  
+input[type="radio"] {
+    display: none;
+}
+  
+.nav label {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 0 5px;
+    background-color: #062403;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+#slide1:checked ~ .mySlides#slide1,
+#slide2:checked ~ .mySlides#slide2,
+#slide3:checked ~ .mySlides#slide3 {
+    display: block;
+}
+  
+#slide1:checked ~ .nav label[for="slide1"],
+#slide2:checked ~ .nav label[for="slide2"],
+#slide3:checked ~ .nav label[for="slide3"] {
+    background-color: #1ab343;
 }

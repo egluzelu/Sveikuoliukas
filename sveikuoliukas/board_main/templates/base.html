@@ -17,7 +17,7 @@
         <span class="spacer"></span>
         <ul class="nav">
             {% if request.user.is_authenticated %}
-                <li><a href="{% url "user_detail_current" %}">{{ user }}</a></li>
+                <li><a href="{% url "user_detail_current" %}">{{ user }} profile</a></li>
                 {% if user.is_superuser or user.is_staff %}
                     <li><a href="{% url "admin:index" %}">{% trans "admin"|capfirst %}</a></li>
                 {% endif %}
