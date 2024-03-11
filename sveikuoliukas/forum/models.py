@@ -40,7 +40,6 @@ class Comment(models.Model):
         return reverse("comment_detail", kwargs={"pk": self.pk})
 
 
-
 class Post(models.Model):
     name = models.CharField(_("name of the post"), max_length=70, db_index=True)
     description = models.TextField(_("description"), blank=True, max_length=10000)
