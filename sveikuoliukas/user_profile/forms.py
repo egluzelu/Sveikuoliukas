@@ -24,7 +24,21 @@ class UserForm(forms.ModelForm):
         model = get_user_model()
         fields = ('first_name','last_name', 'email',)
 
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = models.Profile
         fields = ('picture',)
+
+
+class ChatForm(forms.ModelForm):
+    suggested_participants = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        label="Suggested Participants"
+    )
+
+    class Meta:
+        model = models.Chat
+        fields = ('title', 'description', 'image', 'is_private', 'participants')

@@ -1,0 +1,61 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% trans "create a chat at"|capfirst %} {{ block.super }}{% endblock title %}
+  {% block content %}
+    <h1>{% trans "Create a chat" %}</h1>
+    <form method="post" action="{% url 'chat_create' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+  
+      <div class="form-group">
+        {{ form.title.label_tag }}
+        {{ form.title }}
+        {% if form.title.errors %}
+          <span class="text-danger">{{ form.title.errors.0 }}</span>
+        {% endif %}
+      </div>
+  
+      <div class="form-group">
+        {{ form.description.label_tag }}
+        {{ form.description }}
+        {% if form.description.errors %}
+          <span class="text-danger">{{ form.description.errors.0 }}</span>
+        {% endif %}
+      </div>
+  
+      <div class="form-group">
+        {{ form.image.label_tag }}
+        {{ form.image }}
+        {% if form.image.errors %}
+          <span class="text-danger">{{ form.image.errors.0 }}</span>
+        {% endif %}
+      </div>
+  
+      <div class="form-group">
+        {{ form.is_private.label_tag }}
+        {{ form.is_private }}
+        {% if form.is_private.errors %}
+          <span class="text-danger">{{ form.is_private.errors.0 }}</span>
+        {% endif %}
+      </div>
+  
+      {% if form.is_private.value %}
+        <div class="form-group">
+          <label>{{ form.suggested_participants.label_tag }}</label>
+          {{ form.suggested_participants }}
+          {% if form.suggested_participants.errors %}
+            <span class="text-danger">{{ form.suggested_participants.errors.0 }}</span>
+          {% endif %}
+        </div>
+      {% endif %}
+  
+      <div class="form-group">
+        <label for="{{ form.participants.id_for_label }}">{{ form.participants.label_tag }}</label>
+        {{ form.participants }}
+        {% if form.participants.errors %}
+          <span class="text-danger">{{ form.participants.errors.0 }}</span>
+        {% endif %}
+      </div>
+  
+      <button type="submit" class="btn btn-primary">{% trans "Create" %}</button>
+    </form>
+  {% endblock content %}

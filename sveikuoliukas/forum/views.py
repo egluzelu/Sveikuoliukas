@@ -10,8 +10,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 from . import models
-from django.urls import reverse, reverse_lazy
-from django.views import generic
+from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import CommentForm
 

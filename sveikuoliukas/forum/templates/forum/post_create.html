@@ -7,7 +7,7 @@
   {{ form.as_p }}
   <p><button type="submit">{% trans "create"|capfirst %}</button></p>
   <p> {% if post.image %}
-      <img src="{{ post.image.url }}" alt={% trans "cpostt Image"|title %} width="250">
+      <img src="{{ post.image.url }}" alt={% trans "post Image"|title %} width="250">
       {% endif %}
   </p>
 </form>

@@ -1,0 +1,34 @@
+{% extends "base.html" %}{% load i18n %} {% load static %}
+{% block title %}{{ block.super }} Sent Box {% endblock title %}
+{% block content %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<h1> Sent Box </h1>
+{% if chats %}
+    <ul>
+        {% for chat in chats %}
+            <li>
+                <strong>{{ chat.title }}</strong>
+                <p>{{ chat.description }}</p>
+                <p>Receiver: {{ chat.receiver }}</p>
+                <p>Created at: {{ chat.created_at }}</p>
+                <!-- Add any other details you want to display -->
+
+                <!-- You can add a link to view the chat details -->
+                <a href="{{ chat.get_absolute_url }}">View Chat</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No chats in the sent box.</p>
+{% endif %}
+
+{% endblock content %}
+
+
+
+
+
+

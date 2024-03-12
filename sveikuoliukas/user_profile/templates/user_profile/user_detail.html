@@ -11,7 +11,8 @@
 {% if object == request.user %}
     <p><a class="button" href="{% url 'user_update' %}">{% trans "edit profile data" %}</a></p>
     <p>{% trans "e-mail"|capfirst %}: {{ object.email }}</p>
+    <p><a class="button" href="{% url 'chat_create' %}">{% trans "create a chat" %}</a></p>
+    <p><a class="button" href="{% url 'chat_list' %}">{% trans "my chats" %}</a></p>
 {% endif %}
+
 {% endblock content %}
-
-

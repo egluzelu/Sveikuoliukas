@@ -41,7 +41,7 @@
             <img src="{{ post.owner.profile.picture.url }}" alt={% trans "profile Picture"|title %} width="100">
             {% endif %}
         </ul>
-        <ul class="style2"> Blog maker:
+        <ul class="style2"> Post maker:
           <a href="{% url "user_detail" post.owner.username %}">{{ post.owner }}</a> 
           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
           Post name: <a href="{% url "post_detail" post.pk %}"> {{ post.name }} </a>
