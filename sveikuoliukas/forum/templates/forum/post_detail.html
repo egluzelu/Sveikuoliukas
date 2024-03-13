@@ -10,7 +10,9 @@
   </li>
 <p>{{ post.description }}</p>
 <li> {% if post.image %}
+  <a href="{{ post.image.url }}">
     <img src="{{ post.image.url }}" alt={% trans "post Image"|title %} width="150">
+  </a>
     {% endif %}
 </li>
 <p>{% trans "created"|capfirst %}: {{ post.created_at }}{% if post.created_at != post.updated_at %},
@@ -32,8 +34,10 @@
     </li>
       <p>{{ comment.body }}</p>
       <li>{% if comment.image %}
-      <img src="{{ comment.image.url }}" alt={% trans "comment Image"|title %} width="150">
-      {% endif %}
+        <a href="{{ comment.image.url }}">
+          <img src="{{ comment.image.url }}" alt={% trans "comment Image"|title %} width="150">
+        {% endif %}
+        </a>
       </li>
       <p>{% trans "created"|capfirst %}: {{ comment.created_at }}{% if comment.created_at != comment.updated_at %}, {% trans "updated" %}: {{ comment.updated_at }}{% endif %}</p>
       {% if comment.owner == request.user or request.user.is_superuser %}

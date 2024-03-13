@@ -89,11 +89,15 @@ class ChatCreateView(LoginRequiredMixin, generic.CreateView):
 def chat_list_received(request: HttpRequest) -> HttpResponse:
     user_chats = models.Chat.objects.filter(receiver=request.user)
     owner_username = request.GET.get('owner')
+    receiver_username = request.GET.get('receiver')
+
     if owner_username:
         owner = get_object_or_404(get_user_model(), username=owner_username)
-        user_chats = user_chats.filter(receiver=owner)
-    else:
-        owner = request.user
+        user_chats = user_chats.filter(owner=owner)
+
+    if receiver_username:
+        receiver = get_object_or_404(get_user_model(), username=receiver_username)
+        user_chats = user_chats.filter(receiver=receiver)
 
     search_name = request.GET.get('search_name')
     if search_name:
@@ -111,14 +115,17 @@ def chat_list_received(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def chat_list_send(request: HttpRequest) -> HttpResponse:
-    owner_chats = models.Chat.objects.filter(receiver_owner=request.user)
+    owner_chats = models.Chat.objects.filter(owner=request.user)
     owner_username = request.GET.get('owner')
-
+    receiver_username = request.GET.get('receiver')
+  
     if owner_username:
         owner = get_object_or_404(get_user_model(), username=owner_username)
-        owner_chats = owner_chats.filter(receiver_owner=owner)
-    else:
-        owner = request.user
+        owner_chats = owner_chats.filter(owner=owner)
+
+    if receiver_username:
+        receiver = get_object_or_404(get_user_model(), username=receiver_username)
+        owner_chats = owner_chats.filter(receiver=receiver)
 
     search_name = request.GET.get('search_name')
     if search_name:

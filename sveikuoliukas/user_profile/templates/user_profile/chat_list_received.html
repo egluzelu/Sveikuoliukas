@@ -3,31 +3,29 @@
 {% block content %}
 <h1>{% trans "received Messages"|capfirst %}</h1>
 <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a class="button" href="{% url "chat_create" %}">{% trans "create a new message"|capfirst %}</a></p>
-
-
 <div class="toolbar">
-  <form method="get" action="{{ request.path }}">
-    <select name="earch_name" onchange="this.form.submit();">
+  <form method="get" action="{{ request.path }}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<c style= "font-weight:bold">Search by sender:<c>&emsp;
+    <select name="owner" onchange="this.form.submit();">
         <option value="">{% trans "filter by user"|capfirst %}</option>
         {% for user in user_list %}
                 <option value="{{ user.username }}" {% if user.username == request.GET.owner %}selected{% endif %}>
-                    ({{ user.username }})
+                  ({{ user.username }})
                 </option>
             {% endfor %}
     </select>
-    <button type="submit">&#128269;</button>
   </form>
 </div>
-
 {% for chat in chat_list_received %}
 {% if request.user in chat.receiver.all %}
 <div>
   <ul class="chat_room">
   <p>{{ chat.created_at }} &emsp;&emsp;&emsp; Message name: <c style= "font-weight:bold">{{ chat.title }} <c></p>
   <p> {{chat.description}}</p>
-  <p> {% if chat.image %}</p>
-    <img src="{{ chat.image.url }}" alt={% trans "chat Image"|title %} width="150">
-    {% endif %}
+  <p> {% if chat.image %}
+    <a href="{{ chat.image.url }}">
+      <img src="{{ chat.image.url }}" alt={% trans "chat Image"|title %} width="150">
+    </a>
+    {% endif %} </p>
   <p> From: &nbsp; {{ chat.owner }}</p>
   <p> To: &nbsp; 
     {% for receiver in chat.receiver.all %}
