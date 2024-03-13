@@ -32,13 +32,13 @@ class ProfileForm(forms.ModelForm):
 
 
 class ChatForm(forms.ModelForm):
-    suggested_participants = forms.ModelMultipleChoiceField(
-        queryset=get_user_model().objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=False,
-        label="Suggested Participants"
-    )
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        if user:
+            self.fields['receiver_owner'].widget = forms.HiddenInput()
+            self.fields['receiver_owner'].initial = user
 
     class Meta:
         model = models.Chat
-        fields = ('title', 'description', 'image', 'is_private', 'participants')
+        fields = ('title', 'description', 'image', 'receiver')

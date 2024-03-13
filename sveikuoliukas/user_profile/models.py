@@ -22,7 +22,7 @@ class Profile(models.Model):
     
 
 class Chat(models.Model):
-    title = models.CharField(_("name of the chat"), max_length=70, db_index=True)
+    title = models.CharField(_("name of the chat"), max_length=25, db_index=True)
     description = models.TextField(_("description"), blank=True, max_length=10000)
     image = models.ImageField(_("image"), upload_to='chat_images/', blank=True, null=True)
     owner = models.ForeignKey(
@@ -30,15 +30,20 @@ class Chat(models.Model):
         verbose_name=_("owner"),
         on_delete=models.CASCADE,
         related_name="my_chats",
-        null=True
+        null=True,
     )
-    participants = models.ManyToManyField(
+    receiver_owner = models.ManyToManyField(
         get_user_model(),
-        verbose_name=_("participants"),
+        verbose_name=_("receiver_owner"),
+        related_name="my_send_messages",
+    )
+    receiver = models.ManyToManyField(
+        get_user_model(),
+        verbose_name=_("receiver"),
         related_name="chats",
     )
     created_at = models.DateTimeField(_("created at"), auto_now_add=True, db_index=True, null=True)
-    is_private = models.BooleanField(_("private chat"), default=False)
+    
         
     class Meta:
         verbose_name = _("chat")

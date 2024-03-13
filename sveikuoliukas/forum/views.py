@@ -135,12 +135,6 @@ class CommentCreateView(LoginRequiredMixin, generic.CreateView):
         return reverse('post_detail', kwargs={'pk': self.kwargs['pk']})
     
 
-class CommentDetailView(generic.DetailView):
-    model = models.Comment
-    template_name = 'forum/comment_detail.html'
-    fields = ('body', 'image')
-
-
 class CommentUpdateView(LoginRequiredMixin,
         UserPassesTestMixin,
         generic.UpdateView,

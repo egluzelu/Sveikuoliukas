@@ -2,17 +2,28 @@
 {% block title %}{{ object }} {% trans "at" %} {{ block.super }}{% endblock title %}
 {% block content %}
 <h1>{% trans "user"|title %} {{ object.username }}</h1>
+<div class="box">
 <div>
+    {% if object == request.user %}
+    <p style= "font-weight:bold"> Your meniu: </p>
+    <p><a class="button" href="{% url 'user_update' %}">{% trans "edit profile data" %}</a></p>
+    <p><a class="button" href="{% url 'chat_create' %}">{% trans "create a new message" %}</a></p>
+    <p><a class="button" href="{% url 'chat_list_received' %}">{% trans "received messages" %}</a></p>
+    <p><a class="button" href="{% url 'chat_list_send' %}">{% trans "send messages" %}</a></p>
+    {% endif %}
+</div>
+<div class= "box-picture">
+    {% if object == request.user %}
     {% if object.profile.picture %}
     <img src="{{ object.profile.picture.url }}" alt={% trans "profile Picture"|title %} width="300">
-{% endif %}
+    {% endif %}
+    {% endif %}
 </div>
-<p>{{ object.first_name }} {{ object.last_name }}</p>
-{% if object == request.user %}
-    <p><a class="button" href="{% url 'user_update' %}">{% trans "edit profile data" %}</a></p>
-    <p>{% trans "e-mail"|capfirst %}: {{ object.email }}</p>
-    <p><a class="button" href="{% url 'chat_create' %}">{% trans "create a chat" %}</a></p>
-    <p><a class="button" href="{% url 'chat_list' %}">{% trans "my chats" %}</a></p>
-{% endif %}
+<div class= "box-profile">
+    {% if object == request.user %}
+    <br>{{ object.first_name }} {{ object.last_name }}
+    <br>{% trans "e-mail"|capfirst %}: {{ object.email }}
+    {% endif %}
+</div>
 
 {% endblock content %}

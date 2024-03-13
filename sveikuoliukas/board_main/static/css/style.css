@@ -221,7 +221,7 @@ main form .helptext {
 
 
 button, .button {
-    background-color: #589636;
+    background-color: #4e823a;
     color: #0d2c15;
     outline: solid;
     border: 1 px solid #010c07;
@@ -330,7 +330,7 @@ img {
     border-radius: 8px;
 }
 
-.style2 img {
+.post_class {
     border-radius: 4px;
 }
 
@@ -375,4 +375,42 @@ input[type="radio"] {
 #slide2:checked ~ .nav label[for="slide2"],
 #slide3:checked ~ .nav label[for="slide3"] {
     background-color: #1ab343;
+}
+
+.chat_room {
+    border: 10px groove #154f21;
+    font-size: 30px;
+    font-weight: 30px;
+    text-align: justify;
+    width: 1200px;
+    margin-left: 155px;
+    box-sizing: border-box;
+}
+
+.chat_room2 {
+    border: 10px groove #154f21;
+    font-size: 30px;
+    font-weight: 30px;
+    text-align: justify;
+    width: 1200px;
+    margin-left: 155px;
+    box-sizing: border-box;
+}
+
+.box {
+    display: flex;   
+    justify-content: space-between; 
+    border: 5px groove #154f21;
+    font-weight: 10px;
+    text-align: justify;
+    width: 300px;
+}
+
+.box-profile {
+    display: flex;  
+    justify-content: space-between; 
+    font-weight: 10px;
+    text-align: justify;
+    width: 300px;
+    margin-right: -230%
 }

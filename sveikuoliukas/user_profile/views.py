@@ -15,6 +15,8 @@ from django.db.models.query import QuerySet
 from django.urls import reverse
 from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponseForbidden
+from django.db.models import Q
 
 
 
@@ -64,57 +66,69 @@ def user_update(request: HttpRequest) -> HttpResponse:
     })
 
 
-
 class ChatCreateView(LoginRequiredMixin, generic.CreateView):
     model = models.Chat
     template_name = 'user_profile/chat_create.html'
     form_class = forms.ChatForm
 
     def get_success_url(self) -> str:
-        messages.success(self.request, _('Chat created successfully').capitalize())
-        return reverse('chat_list')
+        messages.success(self.request, _('message created successfully').capitalize())
+        return reverse('chat_list_send')
     
     def form_valid(self, form):
         form.instance.owner = self.request.user
         form.instance.save()
-        form.instance.participants.add(self.request.user)
-        if form.cleaned_data['is_private']:
-            receiver = get_object_or_404(get_user_model(), username=form.cleaned_data['receiver_username'])
-            form.instance.participants.add(receiver)
-
+        form.instance.receiver.add(self.request.user)
+        form.instance.save()
+        form.instance.receiver_owner.add(self.request.user)
+        form.instance.save()
         return super().form_valid(form)
-    
+
 
 @login_required
-def chat_list(request: HttpRequest) -> HttpResponse:
-    user_chats = models.Chat.objects.filter(participants=request.user)
+def chat_list_received(request: HttpRequest) -> HttpResponse:
+    user_chats = models.Chat.objects.filter(receiver=request.user)
     owner_username = request.GET.get('owner')
     if owner_username:
         owner = get_object_or_404(get_user_model(), username=owner_username)
-        user_chats = user_chats.filter(participants=owner)
+        user_chats = user_chats.filter(receiver=owner)
+    else:
+        owner = request.user
+
     search_name = request.GET.get('search_name')
     if search_name:
         user_chats = user_chats.filter(title__icontains=search_name)
 
     context = {
-        'chat_list': user_chats,
+        'chat_list_received': user_chats,
         'user_list': get_user_model().objects.all().order_by('username'),
-        'next': reverse('chat_list') + '?' + \
+        'next': reverse('chat_list_received') + '?' + \
             '&'.join([f"{key}={value}" for key, value in request.GET.items()]),
     }
 
-    return render(request, 'user_profile/chat_list.html', context)
+    return render(request, 'user_profile/chat_list_received.html', context)
 
 
-class ChatDetailView(LoginRequiredMixin, generic.DetailView):
-    model = models.Chat
-    template_name = 'forum/chat_detail.html'
-    fields = ('title', 'description', 'image', 'is_private')
+@login_required
+def chat_list_send(request: HttpRequest) -> HttpResponse:
+    owner_chats = models.Chat.objects.filter(receiver_owner=request.user)
+    owner_username = request.GET.get('owner')
 
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        if not (self.object.sender == self.request.user or self.object.receiver == self.request.user):
-            return HttpResponseForbidden("You don't have permission to view this chat.")
+    if owner_username:
+        owner = get_object_or_404(get_user_model(), username=owner_username)
+        owner_chats = owner_chats.filter(receiver_owner=owner)
+    else:
+        owner = request.user
 
-        context = self.get_context_data(object=self.object)
-        return self.render_to_response(context)
+    search_name = request.GET.get('search_name')
+    if search_name:
+        owner_chats = owner_chats.filter(title__icontains=search_name)
+
+    context = {
+        'chat_list_send': owner_chats,
+        'user_list': get_user_model().objects.all().order_by('username'),
+        'next': reverse('chat_list_send') + '?' + \
+            '&'.join([f"{key}={value}" for key, value in request.GET.items()]),
+    }
+
+    return render(request, 'user_profile/chat_list_send.html', context)

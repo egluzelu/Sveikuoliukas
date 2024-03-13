@@ -7,7 +7,7 @@ class ChatAdmin(admin.ModelAdmin):
     list_display = ['title', 'owner', 'created_at']
     list_display_links = ['title', 'owner']
     list_filter = ['owner']
-    search_fields = ['title', 'description', 'owner__last_name', 'owner__username']
+    search_fields = ['title', 'description']
     readonly_fields = ['created_at']
     fieldsets = (
         (_("general").title(), {
@@ -15,8 +15,7 @@ class ChatAdmin(admin.ModelAdmin):
                 'title',
                 'owner',
                 'description',
-                'participants',
-                'is_private',
+                'receiver',
             ),
         }),
         (_("temporal tracking").title(), {
