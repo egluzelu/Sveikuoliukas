@@ -1,15 +1,14 @@
 {% extends "base.html" %}{% load static i18n %}
 {% block content %}
-<h1>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&#9752;&ensp;Welcome to forum "Sveikuoliukas"!&ensp;&#9752;</h1>
+<h1>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&#9752;&ensp;{% trans "Welcome to forum 'Sveikuoliukas'!" %} &ensp;&#9752;</h1>
 <main>
 <h3>
 <p></p>
-<p>&ensp;&ensp;Sveiki Sveikuoliukai!</p>
-<p>&ensp;&ensp;Kiekvienas iš mūsų esame kažkiek ydingi, bet tai neprivalo mūsų stabdyti gyventi sveikiau! Vieni nori pradėti sportuoti, bet negali prisiversti; kiti -  mesti rūkyti, bet trūksta palaikymo; treti trokšta numesti svorio, bet jokios dietos neveikia.. Čia tik populiariausi pavyzdžiai ko žmogui reikia, kad gyvent sveikiau, bet norų būna įvairiausių! Taip atsirado ir šis forumas "Sveikuoliukas", kuriame galima bendrauti įvairiausiomis temomis, susijusiomis su sveika gyvensena. Jei nori pakeisti savo gyvenimo būdą, ieškai naudingo patarimo, pasiūlymų kaip ir ko imtis, ar tiesiog paprasčiausių palaikymo žodžių, prisijunk jau dabar ir bendrauk drąsiai!<br />
-&ensp;&ensp;Gal jau laikas pradėti gyventi sveikiau..?</p>
-<p>&ensp;&ensp;Pagarbiai,<br />
-&ensp;&ensp;Forumo "Sveikuoliukas" įkūrėjų komanda &#9752; </p>
-
+<p>&ensp;&ensp;{% trans "Hello healthy lifestyle fans!" %}</p>
+<p>&ensp;&ensp;{% trans "We all have our flaws, but that doesn't have to stop us from living a healthier life! Some want to start exercising, but cannot force themselves to start, others - quit smoking, but lack of support; and some - want to lose weight, but diets do not work.. These are only the most popular examples of what a person needs to live healthier, but there are many more! This is why this forum 'Sveikuoliukas' was created. Here you can communicate on various topics related to healthy living. If you want to change your lifestyle or looking for useful advices and suggestions on how and what to do, or maybe just looking for words of support, join now!" %}<br/>
+&ensp;&ensp;{% trans "Maybe it's time to start living healthier..?" %}</p>
+<p>&ensp;&ensp;{% trans "Sincerely," %}<br />
+&ensp;&ensp;{% trans "Forum 'Sveikuoliukas' team" %} &#9752; </p>
 
   <div class="slide-container">
     <input type="radio" name="slides" id="slide1" checked>
@@ -35,11 +34,10 @@
     </div>
   </div>
 
-    <p>Total users at this time: {{ users_count }}</p>
-    <p>Total posts at this time: {{ posts_count }}</p>
-    <p>Total comments at this time: {{ comments_count }}</p>
-
-    
+    <p>{% trans "Total users at this time:" %} {{ users_count }}</p>
+    <p>{% trans "Total posts at this time:" %} {{ posts_count }}</p>
+    <p>{% trans "Total comments at this time:" %} {{ comments_count }}</p>
+</h3>
 </main>
 {% endblock content %}
 

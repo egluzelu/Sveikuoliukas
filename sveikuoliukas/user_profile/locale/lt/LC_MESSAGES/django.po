@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-07 20:36+0200\n"
+"POT-Creation-Date: 2024-03-14 17:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,9 +19,18 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
 "11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
 "1 : n % 1 != 0 ? 2: 3);\n"
+
+#: user_profile/admin.py:13
+msgid "general"
+msgstr "bendras"
+
+#: user_profile/admin.py:21
+msgid "temporal tracking"
+msgstr "laikinis stebėjimas"
+
 #: user_profile/apps.py:8
 msgid "user profile"
-msgstr "vartotojo profilis"
+msgstr "vartotojo anketa"
 
 #: user_profile/forms.py:15
 msgid ""
@@ -32,14 +41,15 @@ msgid ""
 "            Your password can not be a commonly used,<br>\n"
 "            Your password can not be entirely numeric."
 msgstr ""
-"\n"           
-"            Jūsų slaptažodis negali būti per daug panašus į Jūsų kitą asmeninę "
-" informaciją,<br> \n"
+"\n"
+"            Jūsų slaptažodis negali būti per daug panašus į Jūsų kitą "
+"asmeninę  informaciją,<br> \n"
 "            Jūsų slaptažodis turi būti iš bent 8 simbolių,<br> \n"
 "            Jūsų slaptažodis negali būti per daug populiarus,<br> \n"
 "            Jūsų slaptažodis negali būti tik iš skaičių."
 
 #: user_profile/models.py:10
+#: user_profile/templates/user_profile/user_detail.html:4
 msgid "user"
 msgstr "vartotojas"
 
@@ -48,6 +58,8 @@ msgid "picture"
 msgstr "paveikslėlis"
 
 #: user_profile/models.py:14
+#: user_profile/templates/user_profile/user_detail.html:4
+#: user_profile/templates/user_profile/user_update.html:4
 msgid "profile"
 msgstr "profilis"
 
@@ -55,10 +67,268 @@ msgstr "profilis"
 msgid "profiles"
 msgstr "profiliai"
 
-#: user_profile/views.py:19
+#: user_profile/models.py:25
+msgid "name of the chat"
+msgstr "žinutės pavadinimas"
+
+#: user_profile/models.py:26
+msgid "description"
+msgstr "aprašymas"
+
+#: user_profile/models.py:27
+msgid "image"
+msgstr "paveiklėlis"
+
+#: user_profile/models.py:30
+msgid "owner"
+msgstr "savininkas"
+
+#: user_profile/models.py:37
+msgid "receiver"
+msgstr "gavėjas"
+
+#: user_profile/models.py:40
+msgid "created at"
+msgstr "sukurta"
+
+#: user_profile/models.py:43
+msgid "chat"
+msgstr "žinutė"
+
+#: user_profile/models.py:44
+msgid "chats"
+msgstr "žinutės"
+
+#: user_profile/templates/registration/logged_out.html:2
+#: user_profile/templates/registration/logged_out.html:4
+msgid "See you later at"
+msgstr "Iki pasimatymo"
+
+#: user_profile/templates/registration/logged_out.html:5
+msgid "You are always welcome back"
+msgstr "Jūs visada laukiami sugrįžtant"
+
+#: user_profile/templates/registration/logged_out.html:6
+#: user_profile/templates/registration/login.html:14
+#: user_profile/templates/registration/password_reset_complete.html:5
+msgid "log in"
+msgstr "prisijungti"
+
+#: user_profile/templates/registration/logged_out.html:6
+msgid "again"
+msgstr "dar kartą"
+
+#: user_profile/templates/registration/login.html:2
+#: user_profile/templates/registration/login.html:4
+msgid "log in to"
+msgstr "prisijungti prie"
+
+#: user_profile/templates/registration/login.html:6
+msgid "Log in error. Please try again."
+msgstr "Prisijungimo klaida. Prašome bandyti dar kartą."
+
+#: user_profile/templates/registration/login.html:16
+msgid "forgot password?"
+msgstr "Pamiršote slaptažodį?"
+
+#: user_profile/templates/registration/login.html:17
+msgid "If you do not have an account, please"
+msgstr "Jei neturite paskyros, prašome"
+
+#: user_profile/templates/registration/login.html:17
+msgid "sign up"
+msgstr "užsiregistruoti"
+
+#: user_profile/templates/registration/password_reset_complete.html:2
+msgid "password changed"
+msgstr "slaptažodis pakeistas"
+
+#: user_profile/templates/registration/password_reset_complete.html:4
+msgid "Password has been changed successfully"
+msgstr "Slaptažodis sėkmingai pakeistas"
+
+#: user_profile/templates/registration/password_reset_complete.html:5
+msgid "You can now"
+msgstr "Dabar galite"
+
+#: user_profile/templates/registration/password_reset_complete.html:5
+msgid "with your new password"
+msgstr "su savo nauju slaptažodžiu"
+
+#: user_profile/templates/registration/password_reset_confirm.html:2
+#: user_profile/templates/registration/password_reset_confirm.html:4
+#: user_profile/templates/registration/password_reset_confirm.html:9
+msgid "reset password"
+msgstr "naujo slaptažodžio nustatymas"
+
+#: user_profile/templates/registration/password_reset_confirm.html:12
+msgid "Password Reset Failed: the link has expired and is no longer valid."
+msgstr ""
+"Slaptažodžio nustatymas nepavyko: nuoroda yra pasibaigusi arba nebegalioja."
+
+#: user_profile/templates/registration/password_reset_done.html:2
+#: user_profile/templates/registration/password_reset_form.html:2
+#: user_profile/templates/registration/password_reset_form.html:4
+msgid "password reset"
+msgstr "naujo slaptažodžio nustatymas"
+
+#: user_profile/templates/registration/password_reset_done.html:4
+msgid "please check your email"
+msgstr "prašome patikrinti savo el. paštą"
+
+#: user_profile/templates/registration/password_reset_done.html:5
+msgid "We have sent further instructions to your email."
+msgstr "Mes išsiuntėme papildomus nurodymus į jūsų el. paštą."
+
+#: user_profile/templates/registration/password_reset_email.html:1
+msgid ""
+"Hello,\n"
+"\n"
+"Someone has requested the password change at Sveikuoliukas. If it was not "
+"you, please ignore this email.\n"
+"\n"
+"You can change your password by following this link:"
+msgstr ""
+"Sveiki,\n"
+"\n"
+"Kažkas paprašė pakeisti slaptažodį forume 'Sveikuoliukas'. Jei tai nebuvote "
+"Jūs, prašome ignoruoti šį laišką.\n"
+"\n"
+"Savo slaptažodį galite pakeisti sekant šią nuorodą:"
+
+#: user_profile/templates/registration/password_reset_email.html:8
+msgid ""
+"Best regards,\n"
+"Sveikuoliukas Team"
+msgstr ""
+"Pagarbiai,\n"
+"Forumo 'Sveikuoliukas' komanda"
+
+#: user_profile/templates/registration/password_reset_form.html:8
+msgid "confirm"
+msgstr "patvirtinti"
+
+#: user_profile/templates/user_profile/chat_create.html:2
+msgid "create a message at"
+msgstr "sukurti žinutę"
+
+#: user_profile/templates/user_profile/chat_create.html:4
+msgid "Create a message"
+msgstr "Sukurti žinutę"
+
+#: user_profile/templates/user_profile/chat_create.html:8
+msgid "create new message"
+msgstr "sukurti naują žinutę"
+
+#: user_profile/templates/user_profile/chat_list_received.html:2
+#: user_profile/templates/user_profile/chat_list_send.html:2
+msgid "list"
+msgstr "sąrašas"
+
+#: user_profile/templates/user_profile/chat_list_received.html:4
+#: user_profile/templates/user_profile/user_detail.html:11
+msgid "received messages"
+msgstr "gautos žinutės"
+
+#: user_profile/templates/user_profile/chat_list_received.html:5
+#: user_profile/templates/user_profile/chat_list_send.html:5
+#: user_profile/templates/user_profile/user_detail.html:10
+msgid "create a new message"
+msgstr "sukurti naują žinutę"
+
+#: user_profile/templates/user_profile/chat_list_received.html:8
+msgid "Search by sender:"
+msgstr "Ieškoti pagal siuntėją:"
+
+#: user_profile/templates/user_profile/chat_list_received.html:10
+#: user_profile/templates/user_profile/chat_list_send.html:10
+msgid "Filter by User"
+msgstr "filtruoti pagal vartotoją"
+
+#: user_profile/templates/user_profile/chat_list_received.html:21
+#: user_profile/templates/user_profile/chat_list_send.html:21
+msgid "No matches found."
+msgstr "Atitikmenų nerasta."
+
+#: user_profile/templates/user_profile/chat_list_received.html:28
+#: user_profile/templates/user_profile/chat_list_send.html:28
+msgid "Message Name:"
+msgstr "Žinutės pavadinimas:"
+
+#: user_profile/templates/user_profile/chat_list_received.html:32
+#: user_profile/templates/user_profile/chat_list_send.html:32
+msgid "Chat Image"
+msgstr "žinutės paveikslėlis"
+
+#: user_profile/templates/user_profile/chat_list_received.html:36
+#: user_profile/templates/user_profile/chat_list_send.html:36
+msgid "From:"
+msgstr "Nuo:"
+
+#: user_profile/templates/user_profile/chat_list_received.html:37
+#: user_profile/templates/user_profile/chat_list_send.html:37
+msgid "To:"
+msgstr "Kam:"
+
+#: user_profile/templates/user_profile/chat_list_send.html:4
+#: user_profile/templates/user_profile/user_detail.html:12
+msgid "send messages"
+msgstr "siųstos žinutės"
+
+#: user_profile/templates/user_profile/chat_list_send.html:8
+msgid "Search by receiver:"
+msgstr "Ieškoti pagal gavėją:"
+
+#: user_profile/templates/user_profile/signup.html:2
+#: user_profile/templates/user_profile/signup.html:4
+msgid "signup for"
+msgstr "registruotis"
+
+#: user_profile/templates/user_profile/signup.html:8
+msgid "register account"
+msgstr "registruoti anketą"
+
+#: user_profile/templates/user_profile/user_detail.html:2
+msgid "at"
+msgstr "adresu"
+
+#: user_profile/templates/user_profile/user_detail.html:8
+msgid "My meniu:"
+msgstr "Mano meniu:"
+
+#: user_profile/templates/user_profile/user_detail.html:9
+msgid "edit profile data"
+msgstr "koreguoti anketos duomenis"
+
+#: user_profile/templates/user_profile/user_detail.html:19
+msgid "profile Picture"
+msgstr "anketos avataras"
+
+#: user_profile/templates/user_profile/user_detail.html:25
+msgid "e-mail"
+msgstr "el. paštas"
+
+#: user_profile/templates/user_profile/user_update.html:2
+#: user_profile/templates/user_profile/user_update.html:4
+msgid "editing"
+msgstr "redaguoti"
+
+#: user_profile/templates/user_profile/user_update.html:2
+msgid "profile at"
+msgstr "anketa"
+
+#: user_profile/templates/user_profile/user_update.html:9
+msgid "Confirm"
+msgstr "Patvirtinti"
+
+#: user_profile/views.py:25
 msgid "Thank you! You can now log in with your credentials."
 msgstr "Ačiū Jums! Galite prisijungti."
 
-#: user_profile/views.py:46
+#: user_profile/views.py:53
 msgid "profile edited successfully"
-msgstr "profilis sėkimngai koreguotas"
+msgstr "anketa sėkimngai koreguota"
+
+#: user_profile/views.py:70
+msgid "message created successfully"
+msgstr "žinutė sėkmingai nusiųsta"

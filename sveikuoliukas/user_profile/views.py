@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest, HttpResponse, HttpResponseForbidden
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from . import forms
@@ -9,15 +9,10 @@ from . import models
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
 from typing import Any
-from django.db.models.query import QuerySet
 from django.urls import reverse
 from django.views import generic
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponseForbidden
 from django.db.models import Q
-
 
 
 User = get_user_model()
@@ -76,28 +71,45 @@ class ChatCreateView(LoginRequiredMixin, generic.CreateView):
         return reverse('chat_list_send')
     
     def form_valid(self, form):
-        form.instance.owner = self.request.user
+        form.instance.sender = self.request.user
         form.instance.save()
         form.instance.receiver.add(self.request.user)
-        form.instance.save()
-        form.instance.receiver_owner.add(self.request.user)
-        form.instance.save()
         return super().form_valid(form)
 
 
 @login_required
-def chat_list_received(request: HttpRequest) -> HttpResponse:
-    user_chats = models.Chat.objects.filter(receiver=request.user)
-    owner_username = request.GET.get('owner')
+def chat_list_send(request: HttpRequest) -> HttpResponse:
+    user = request.user
+    user_chats = models.Chat.objects.filter(sender=user)
+
     receiver_username = request.GET.get('receiver')
-
-    if owner_username:
-        owner = get_object_or_404(get_user_model(), username=owner_username)
-        user_chats = user_chats.filter(owner=owner)
-
     if receiver_username:
         receiver = get_object_or_404(get_user_model(), username=receiver_username)
         user_chats = user_chats.filter(receiver=receiver)
+
+    search_name = request.GET.get('search_name')
+    if search_name:
+        user_chats = user_chats.filter(title__icontains=search_name)
+
+    context = {
+        'chat_list_send': user_chats,
+        'user_list': get_user_model().objects.all().order_by('username'),
+        'next': reverse('chat_list_send') + '?' + \
+            '&'.join([f"{key}={value}" for key, value in request.GET.items()]),
+        'no_matches': not user_chats.exists(),
+    }
+    return render(request, 'user_profile/chat_list_send.html', context)
+
+
+@login_required
+def chat_list_received(request: HttpRequest) -> HttpResponse:
+    user = request.user
+    user_chats = models.Chat.objects.filter(receiver=user)
+
+    sender_username = request.GET.get('sender')
+    if sender_username:
+        sender = get_object_or_404(get_user_model(), username=sender_username)
+        user_chats = user_chats.filter(sender=sender)
 
     search_name = request.GET.get('search_name')
     if search_name:
@@ -108,34 +120,6 @@ def chat_list_received(request: HttpRequest) -> HttpResponse:
         'user_list': get_user_model().objects.all().order_by('username'),
         'next': reverse('chat_list_received') + '?' + \
             '&'.join([f"{key}={value}" for key, value in request.GET.items()]),
+        'no_matches': not user_chats.exists(),
     }
-
     return render(request, 'user_profile/chat_list_received.html', context)
-
-
-@login_required
-def chat_list_send(request: HttpRequest) -> HttpResponse:
-    owner_chats = models.Chat.objects.filter(owner=request.user)
-    owner_username = request.GET.get('owner')
-    receiver_username = request.GET.get('receiver')
-  
-    if owner_username:
-        owner = get_object_or_404(get_user_model(), username=owner_username)
-        owner_chats = owner_chats.filter(owner=owner)
-
-    if receiver_username:
-        receiver = get_object_or_404(get_user_model(), username=receiver_username)
-        owner_chats = owner_chats.filter(receiver=receiver)
-
-    search_name = request.GET.get('search_name')
-    if search_name:
-        owner_chats = owner_chats.filter(title__icontains=search_name)
-
-    context = {
-        'chat_list_send': owner_chats,
-        'user_list': get_user_model().objects.all().order_by('username'),
-        'next': reverse('chat_list_send') + '?' + \
-            '&'.join([f"{key}={value}" for key, value in request.GET.items()]),
-    }
-
-    return render(request, 'user_profile/chat_list_send.html', context)

@@ -4,16 +4,16 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ChatAdmin(admin.ModelAdmin):
-    list_display = ['title', 'owner', 'created_at']
-    list_display_links = ['title', 'owner']
-    list_filter = ['owner']
+    list_display = ['title', 'sender', 'created_at']
+    list_display_links = ['title', 'sender']
+    list_filter = ['sender']
     search_fields = ['title', 'description']
     readonly_fields = ['created_at']
     fieldsets = (
         (_("general").title(), {
             "fields": (
                 'title',
-                'owner',
+                'sender',
                 'description',
                 'receiver',
             ),

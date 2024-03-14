@@ -19,8 +19,7 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
     model = models.Post
     template_name = 'forum/post_create.html'
     fields = ('name', 'description', 'image')
-
-    
+  
     def get_success_url(self) -> str:
         messages.success(self.request, 
             _('post created succesfully').capitalize())
@@ -74,7 +73,6 @@ def post_list(request: HttpRequest) -> HttpResponse:
         'next': reverse('post_list') + '?' + \
             '&'.join([f"{key}={value}" for key, value in request.GET.items()]),
     }
-
     return render(request, 'forum/post_list.html', context)
 
 

@@ -1,29 +1,27 @@
 {% extends "base.html" %}{% load static i18n %}
 {% block title %}{{ object }} {% trans "at" %} {{ block.super }}{% endblock title %}
 {% block content %}
-<h1>{% trans "user"|title %} {{ object.username }}</h1>
+<h1>{% trans "user"|title %} {{ object.username }} {% trans "profile" %}</h1>
 <div class="box">
-<div>
+<div class="box-meniu">
     {% if object == request.user %}
-    <p style= "font-weight:bold"> Your meniu: </p>
+    <p style= "font-weight:bold"> &emsp; {% trans "My meniu:" %} </p>
     <p><a class="button" href="{% url 'user_update' %}">{% trans "edit profile data" %}</a></p>
     <p><a class="button" href="{% url 'chat_create' %}">{% trans "create a new message" %}</a></p>
     <p><a class="button" href="{% url 'chat_list_received' %}">{% trans "received messages" %}</a></p>
     <p><a class="button" href="{% url 'chat_list_send' %}">{% trans "send messages" %}</a></p>
     {% endif %}
 </div>
-<div class= "box-picture">
+<p></p>
+<div>&emsp;&emsp;&emsp;
     {% if object == request.user %}
     {% if object.profile.picture %}
     <img src="{{ object.profile.picture.url }}" alt={% trans "profile Picture"|title %} width="300">
     {% endif %}
     {% endif %}
 </div>
-<div class= "box-profile">
-    {% if object == request.user %}
-    <br>{{ object.first_name }} {{ object.last_name }}
-    <br>{% trans "e-mail"|capfirst %}: {{ object.email }}
-    {% endif %}
-</div>
-
+{% if object == request.user %}
+<p>&emsp;&emsp;&emsp;{{ object.first_name }} {{ object.last_name }}</p>
+<p>&emsp;&emsp;&emsp;{% trans "e-mail"|capfirst %}: {{ object.email }}</p>
+{% endif %}
 {% endblock content %}

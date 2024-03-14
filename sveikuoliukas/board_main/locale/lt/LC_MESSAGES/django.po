@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-07 21:28+0200\n"
+"POT-Creation-Date: 2024-03-14 10:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,38 +24,101 @@ msgstr ""
 msgid "board_main"
 msgstr "Pagrindinis puslapis"
 
-#: board_main/models.py:8
-msgid "name of the Board"
-msgstr "puslapio pavadinimas"
+#: board_main/models.py:6
+msgid "title"
+msgstr "pavadinimas"
 
-#: board_main/models.py:9
+#: board_main/models.py:7
 msgid "description"
 msgstr "aprašymas"
 
-#: board_main/models.py:12
-msgid "owner"
-msgstr "sukūrėjas"
+#: board_main/templates/base.html:6
+msgid "welcome to forum"
+msgstr "sveiki atvyke į forumą"
 
-#: board_main/models.py:17 board_main/models.py:18
-msgid "board"
-msgstr "puslapis"
+#: board_main/templates/base.html:14
+msgid "Info"
+msgstr "Info"
 
-#: board_main/templates/base.html:21
+#: board_main/templates/base.html:15
+msgid "forum"
+msgstr "forumas"
+
+#: board_main/templates/base.html:20
+msgid "profile"
+msgstr "anketa"
+
+#: board_main/templates/base.html:22
 msgid "admin"
-msgstr ""
+msgstr "adminas"
 
-#: board_main/templates/base.html:24
+#: board_main/templates/base.html:25
 msgid "log out"
-msgstr ""
-
-#: board_main/templates/base.html:26
-msgid "log in"
-msgstr ""
+msgstr "atsijungti"
 
 #: board_main/templates/base.html:27
-msgid "sign up"
-msgstr ""
+msgid "log in"
+msgstr "prisijungti"
 
-#: board_main/templates/base.html:51
-msgid "I am rich, because I`m healthy!"
+#: board_main/templates/base.html:28
+msgid "sign up"
+msgstr "registruotis"
+
+#: board_main/templates/base.html:52
+msgid "'I`m rich, because I`m healthy!'"
+msgstr "'Aš esu turtingas, nes esu sveikas!'"
+
+#: board_main/templates/board_main/index.html:3
+msgid "Welcome to forum 'Sveikuoliukas'!"
+msgstr "Sveiki atvykę į forumą 'Sveikuoliukas'!"
+
+#: board_main/templates/board_main/index.html:7
+msgid "Hello healthy lifestyle fans!"
+msgstr "Sveiki Sveikuoliukai!"
+
+#: board_main/templates/board_main/index.html:8
+msgid ""
+"We all have our flaws, but that doesn't have to stop us from living a "
+"healthier life! Some want to start exercising, but cannot force themselves "
+"to start, others - quit smoking, but lack of support; and some - want to "
+"lose weight, but diets do not work.. These are only the most popular "
+"examples of what a person needs to live healthier, but there are many more! "
+"This is why this forum 'Sveikuoliukas' was created. Here you can communicate "
+"on various topics related to healthy living. If you want to change your "
+"lifestyle or looking for useful advices and suggestions on how and what to "
+"do, or maybe just looking for words of support, join now!"
 msgstr ""
+"Kiekvienas iš mūsų esame kažkiek ydingi, bet tai neprivalo mūsų "
+"stabdytigyventi sveikiau! Vieni nori pradėti sportuoti, bet negali "
+"prisiversti;kiti -  mesti rūkyti, bet trūksta palaikymo; treti trokšta "
+"numesti svorio,bet jokios dietos neveikia.. Čia tik populiariausi pavyzdžiai "
+"ko žmoguireikia, kad gyvent sveikiau, bet norų būna įvairiausių! Taip "
+"atsirado ir šisforumas 'Sveikuoliukas', kuriame galima bendrauti "
+"įvairiausiomis temomis,susijusiomis su sveika gyvensena. Jei nori pakeisti "
+"savo gyvenimo būdą,ieškai naudingo patarimo, pasiūlymų kaip ir ko imtis, ar "
+"tiesiogpaprasčiausių palaikymo žodžių, prisijunk jau dabar ir bendrauk "
+"drąsiai!"
+
+#: board_main/templates/board_main/index.html:9
+msgid "Maybe it's time to start living healthier..?"
+msgstr "Gal jau laikas pradėti gyventi sveikiau..?"
+
+#: board_main/templates/board_main/index.html:10
+msgid "Sincerely,"
+msgstr "Pagarbiai,"
+
+#: board_main/templates/board_main/index.html:11
+msgid "Forum 'Sveikuoliukas' team"
+msgstr "Forumo 'Sveikuoliukas' komanda"
+
+#: board_main/templates/board_main/index.html:37
+msgid "Total users at this time:"
+msgstr "Iš viso vartotojų šiuo metu:"
+
+#: board_main/templates/board_main/index.html:38
+msgid "Total posts at this time:"
+msgstr "Iš viso pranešimų šiuo metu:"
+
+#: board_main/templates/board_main/index.html:39
+msgid "Total comments at this time:"
+msgstr "Iš viso komentarų šiuo metu:"

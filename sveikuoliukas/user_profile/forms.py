@@ -33,11 +33,8 @@ class ProfileForm(forms.ModelForm):
 
 class ChatForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
-        if user:
-            self.fields['receiver_owner'].widget = forms.HiddenInput()
-            self.fields['receiver_owner'].initial = user
+        self.fields['receiver'].queryset = self.fields['receiver'].queryset.order_by('username')
 
     class Meta:
         model = models.Chat

@@ -3,37 +3,46 @@
 {% block content %}
 <h1>{% trans "send messages"|capfirst %}</h1>
 <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a class="button" href="{% url "chat_create" %}">{% trans "create a new message"|capfirst %}</a></p>
-<div class="toolbar">
-  <form method="get" action="{{ request.path }}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<c style= "font-weight:bold">Search by receiver:<c>&emsp;
-    <select name="receiver" onchange="this.form.submit();">
-        <option value="">{% trans "filter by user"|capfirst %}</option>
+  <div class="toolbar">
+    <form method="get" action="{{ request.path }}">
+      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong>{% trans "Search by receiver:" %}</strong>&emsp;
+      <select name="receiver" onchange="this.form.submit();">
+        <option value="">{% trans "Filter by User"|capfirst %}</option>
         {% for user in user_list %}
-                <option value="{{ user.username }}" {% if user.username == request.GET.receiver %}selected{% endif %}>
-                  ({{ user.username }})
-                </option>
-            {% endfor %}
-    </select>
-  </form>
-</div>
-{% for chat in chat_list_send %}
-{% if request.user in chat.receiver_owner.all %}
-<div>
-  <ul class="chat_room">
-  <p>{{ chat.created_at }} &emsp;&emsp;&emsp; Message name: <c style= "font-weight:bold">{{ chat.title }} <c></p>
-  <p> {{chat.description}}</p>
-  <p> {% if chat.image %}
-    <a href="{{ chat.image.url }}">    
-      <img src="{{ chat.image.url }}" alt={% trans "chat Image"|title %} width="150">
-    </a>
-    {% endif %} </p>
-  <p> From: &nbsp; {{ chat.owner }}</p>
-  <p> To: &nbsp; 
-    {% for receiver in chat.receiver.all %}
-    {{ receiver }}
-    {% endfor %}
-    </p>
-  </ul>
+          <option value="{{ user.username }}" {% if user.username == request.GET.receiver %}selected{% endif %}>
+            ({{ user.username }})
+          </option>
+        {% endfor %}
+      </select>
+    </form>
   </div>
-{% endif %}
-{% endfor %}
+  {% if no_matches %}
+    <p></p>
+    <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{% trans "No matches found." %}</p>
+  {% else %}
+    {% for chat in chat_list_send %}
+      {% if request.user == chat.sender %}
+        <div>
+          <ul class="chat_room">
+            <li>
+              <p>{{ chat.created_at }} &emsp;&emsp;&emsp; {% trans "Message Name:" %} <strong>{{ chat.title }}</strong></p>
+              <p>{{ chat.description }}</p>
+              <p>{% if chat.image %}
+                  <a href="{{ chat.image.url }}">
+                    <img src="{{ chat.image.url }}" alt="{% trans "Chat Image"|title %}" width="150">
+                  </a>
+                {% endif %}
+              </p>
+              <p>{% trans "From:" %} &nbsp; {{ chat.sender }}</p>
+              <p>{% trans "To:" %} &nbsp;
+                {% for receiver in chat.receiver.all %}
+                  {{ receiver }}
+                {% endfor %}
+              </p>
+            </li>
+          </ul>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 {% endblock content %}

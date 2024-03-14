@@ -37,10 +37,10 @@
         <p><img src="{% static 'images/line_picture.png' %}" width="900"></p>
         <ul class="post_class">
           {% if post.owner.profile.picture %}
-            <img src="{{ post.owner.profile.picture.url }}" alt={% trans "profile Picture"|title %} width="100">
+            <img src="{{ post.owner.profile.picture.url }}" alt={% trans "profile picture"|capfirst %} width="100">
             {% endif %}
         </ul>
-        <ul class="post_class"> Post maker:&emsp;
+        <ul class="post_class"> {% trans "post maker:"|capfirst %}&emsp;
           <c style= "font-weight:bold">{{ post.owner }}</c>
           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
           Post name: <a href="{% url "post_detail" post.pk %}"> {{ post.name }} </a>

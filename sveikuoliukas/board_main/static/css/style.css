@@ -397,20 +397,12 @@ input[type="radio"] {
     box-sizing: border-box;
 }
 
-.box {
+.box-meniu {
     display: flex;   
     justify-content: space-between; 
     border: 5px groove #154f21;
     font-weight: 10px;
-    text-align: justify;
-    width: 300px;
+    text-align: left;
+    width: 1200px;
 }
 
-.box-profile {
-    display: flex;  
-    justify-content: space-between; 
-    font-weight: 10px;
-    text-align: justify;
-    width: 300px;
-    margin-right: -230%
-}
