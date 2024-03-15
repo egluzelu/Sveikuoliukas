@@ -22,21 +22,23 @@ class Profile(models.Model):
     
 
 class Chat(models.Model):
-    title = models.CharField(_("name of the chat"), max_length=25, db_index=True)
-    description = models.TextField(_("description"), blank=True, max_length=10000)
-    image = models.ImageField(_("image"), upload_to='chat_images/', blank=True, null=True)
     sender = models.ForeignKey(
         get_user_model(),
-        verbose_name=_("owner"),
+        verbose_name=_("sender"),
         on_delete=models.CASCADE,
         related_name="sent_chats",
         null=True,
     )
-    receiver = models.ManyToManyField(
+    receiver = models.ForeignKey(
         get_user_model(),
         verbose_name=_("receiver"),
+        on_delete=models.CASCADE,
         related_name="received_chats",
+        null=True,
     )
+    title = models.CharField(_("name of the chat"), max_length=25, db_index=True, null=True)
+    description = models.TextField(_("description"), blank=True, max_length=10000, null=True)
+    image = models.ImageField(_("image"), upload_to='chat_images/', blank=True, null=True)
     created_at = models.DateTimeField(_("created at"), auto_now_add=True, db_index=True, null=True)
            
     class Meta:
@@ -45,7 +47,11 @@ class Chat(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return self.title
+        return "{} {} {}".format(
+            self.sender,
+            _("sent by"),
+            self.receiver,
+        )
     
     def get_absolute_url(self):
         return reverse("chat_detail", kwargs={"pk": self.pk})

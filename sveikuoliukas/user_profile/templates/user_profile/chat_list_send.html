@@ -1,11 +1,11 @@
 {% extends "base.html" %}{% load i18n %} {% load static %}
 {% block title %}{{ block.super }} {% trans "list" %}{% endblock title %}
 {% block content %}
-<h1>{% trans "send messages"|capfirst %}</h1>
-<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a class="button" href="{% url "chat_create" %}">{% trans "create a new message"|capfirst %}</a></p>
+<h1>{% trans "sent messages"|capfirst %}</h1>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a class="button" href="{% url "chat_create" %}">{% trans "create a new message"|capfirst %}</a></p>
   <div class="toolbar">
     <form method="get" action="{{ request.path }}">
-      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong>{% trans "Search by receiver:" %}</strong>&emsp;
+      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong>{% trans "Search by receiver:" %}</strong>&emsp;
       <select name="receiver" onchange="this.form.submit();">
         <option value="">{% trans "Filter by User"|capfirst %}</option>
         {% for user in user_list %}
@@ -18,28 +18,24 @@
   </div>
   {% if no_matches %}
     <p></p>
-    <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{% trans "No matches found." %}</p>
+    <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{% trans "No matches found." %}</p>
   {% else %}
     {% for chat in chat_list_send %}
       {% if request.user == chat.sender %}
         <div>
           <ul class="chat_room">
-            <li>
-              <p>{{ chat.created_at }} &emsp;&emsp;&emsp; {% trans "Message Name:" %} <strong>{{ chat.title }}</strong></p>
-              <p>{{ chat.description }}</p>
+            <l>
+              <p>{{ chat.created_at }} &emsp;&emsp;&emsp; {% trans "Message Name:" %} <c style="font-family:cursive; font-size:120%; font-weight:700;">{{ chat.title }}</c>
+              <p style="font-family:cursive; font-size:110%">{{ chat.description }}</p>
               <p>{% if chat.image %}
                   <a href="{{ chat.image.url }}">
                     <img src="{{ chat.image.url }}" alt="{% trans "Chat Image"|title %}" width="150">
                   </a>
                 {% endif %}
               </p>
-              <p>{% trans "From:" %} &nbsp; {{ chat.sender }}</p>
-              <p>{% trans "To:" %} &nbsp;
-                {% for receiver in chat.receiver.all %}
-                  {{ receiver }}
-                {% endfor %}
-              </p>
-            </li>
+              <p>{% trans "From:" %} &nbsp; <strong>{{ chat.sender }}</strong></p>
+              <p>{% trans "To:" %} &nbsp; <strong>{{ chat.receiver }}</strong></p>
+            </l>
           </ul>
         </div>
       {% endif %}

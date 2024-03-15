@@ -30,10 +30,7 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
         return super().form_valid(form)
 
 
-class PostUpdateView(LoginRequiredMixin,
-        UserPassesTestMixin,
-        generic.UpdateView,
-    ):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = models.Post
     template_name = 'forum/post_update.html'
     fields = ('name', 'description', 'image')
@@ -133,10 +130,7 @@ class CommentCreateView(LoginRequiredMixin, generic.CreateView):
         return reverse('post_detail', kwargs={'pk': self.kwargs['pk']})
     
 
-class CommentUpdateView(LoginRequiredMixin,
-        UserPassesTestMixin,
-        generic.UpdateView,
-    ):
+class CommentUpdateView(LoginRequiredMixin,UserPassesTestMixin,generic.UpdateView):
     model = models.Comment
     template_name = 'forum/comment_update.html'
     fields = ('body', 'image')

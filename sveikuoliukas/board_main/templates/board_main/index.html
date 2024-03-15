@@ -1,6 +1,6 @@
 {% extends "base.html" %}{% load static i18n %}
 {% block content %}
-<h1>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&#9752;&ensp;{% trans "Welcome to forum 'Sveikuoliukas'!" %} &ensp;&#9752;</h1>
+<h1 style="text-align:center;">&#9752;&ensp;{% trans "Welcome to forum 'Sveikuoliukas'!" %} &ensp;&#9752;</h1>
 <main>
 <h3>
 <p></p>
@@ -37,6 +37,7 @@
     <p>{% trans "Total users at this time:" %} {{ users_count }}</p>
     <p>{% trans "Total posts at this time:" %} {{ posts_count }}</p>
     <p>{% trans "Total comments at this time:" %} {{ comments_count }}</p>
+    <p></p>
 </h3>
 </main>
 {% endblock content %}

@@ -34,8 +34,8 @@
         {% endif %}
 
         {% for post in post_list %}
-        <p><img src="{% static 'images/line_picture.png' %}" width="900"></p>
-        <ul class="post_class">
+        <p><img src="{% static 'images/line_picture_sveikuoliukas.png' %}" width="900"></p>
+        <ul class="post_list">
           {% if post.owner.profile.picture %}
             <img src="{{ post.owner.profile.picture.url }}" alt={% trans "profile picture"|capfirst %} width="100">
             {% endif %}
@@ -43,9 +43,9 @@
         <ul class="post_class"> {% trans "post maker:"|capfirst %}&emsp;
           <c style= "font-weight:bold">{{ post.owner }}</c>
           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-          Post name: <a href="{% url "post_detail" post.pk %}"> {{ post.name }} </a>
+          {% trans "Post name:" %} <a href="{% url "post_detail" post.pk %}" style="font-family:cursive; font-size:150%;"> {{ post.name }} </a>
         </ul>
-        <ul class="post_class"> Posted:&emsp;
+        <ul class="post_list"> {% trans "Posted:" %} &emsp;
           {{ post.updated_at }}
         </ul>
         {% endfor %}  

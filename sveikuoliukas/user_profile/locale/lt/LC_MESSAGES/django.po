@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-14 17:40+0200\n"
+"POT-Creation-Date: 2024-03-15 14:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,37 +67,41 @@ msgstr "profilis"
 msgid "profiles"
 msgstr "profiliai"
 
-#: user_profile/models.py:25
-msgid "name of the chat"
-msgstr "žinutės pavadinimas"
-
-#: user_profile/models.py:26
-msgid "description"
-msgstr "aprašymas"
-
 #: user_profile/models.py:27
-msgid "image"
-msgstr "paveiklėlis"
+msgid "sender"
+msgstr "siuntėjas"
 
-#: user_profile/models.py:30
-msgid "owner"
-msgstr "savininkas"
-
-#: user_profile/models.py:37
+#: user_profile/models.py:34
 msgid "receiver"
 msgstr "gavėjas"
 
+#: user_profile/models.py:39
+msgid "name of the chat"
+msgstr "žinutės pavadinimas"
+
 #: user_profile/models.py:40
+msgid "description"
+msgstr "aprašymas"
+
+#: user_profile/models.py:41
+msgid "image"
+msgstr "paveikslėlis"
+
+#: user_profile/models.py:42
 msgid "created at"
 msgstr "sukurta"
 
-#: user_profile/models.py:43
+#: user_profile/models.py:45
 msgid "chat"
 msgstr "žinutė"
 
-#: user_profile/models.py:44
+#: user_profile/models.py:46
 msgid "chats"
 msgstr "žinutės"
+
+#: user_profile/models.py:52
+msgid "sent by"
+msgstr "siųsta nuo"
 
 #: user_profile/templates/registration/logged_out.html:2
 #: user_profile/templates/registration/logged_out.html:4
@@ -272,8 +276,8 @@ msgstr "Kam:"
 
 #: user_profile/templates/user_profile/chat_list_send.html:4
 #: user_profile/templates/user_profile/user_detail.html:12
-msgid "send messages"
-msgstr "siųstos žinutės"
+msgid "sent messages"
+msgstr "išsiųstos žinutės"
 
 #: user_profile/templates/user_profile/chat_list_send.html:8
 msgid "Search by receiver:"
@@ -298,7 +302,7 @@ msgstr "Mano meniu:"
 
 #: user_profile/templates/user_profile/user_detail.html:9
 msgid "edit profile data"
-msgstr "koreguoti anketos duomenis"
+msgstr "keisti anketos duomenis"
 
 #: user_profile/templates/user_profile/user_detail.html:19
 msgid "profile Picture"
@@ -327,7 +331,7 @@ msgstr "Ačiū Jums! Galite prisijungti."
 
 #: user_profile/views.py:53
 msgid "profile edited successfully"
-msgstr "anketa sėkimngai koreguota"
+msgstr "anketa sėkmingai redaguota"
 
 #: user_profile/views.py:70
 msgid "message created successfully"

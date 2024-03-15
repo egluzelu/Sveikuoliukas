@@ -73,7 +73,6 @@ class ChatCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.sender = self.request.user
         form.instance.save()
-        form.instance.receiver.add(self.request.user)
         return super().form_valid(form)
 
 
@@ -86,10 +85,6 @@ def chat_list_send(request: HttpRequest) -> HttpResponse:
     if receiver_username:
         receiver = get_object_or_404(get_user_model(), username=receiver_username)
         user_chats = user_chats.filter(receiver=receiver)
-
-    search_name = request.GET.get('search_name')
-    if search_name:
-        user_chats = user_chats.filter(title__icontains=search_name)
 
     context = {
         'chat_list_send': user_chats,
@@ -110,10 +105,6 @@ def chat_list_received(request: HttpRequest) -> HttpResponse:
     if sender_username:
         sender = get_object_or_404(get_user_model(), username=sender_username)
         user_chats = user_chats.filter(sender=sender)
-
-    search_name = request.GET.get('search_name')
-    if search_name:
-        user_chats = user_chats.filter(title__icontains=search_name)
 
     context = {
         'chat_list_received': user_chats,

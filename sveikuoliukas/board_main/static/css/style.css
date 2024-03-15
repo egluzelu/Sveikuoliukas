@@ -1,9 +1,9 @@
 body {
     backdrop-filter: contrast(10%) brightness(150%);
-    background-image: url('/static/images/main_picture.png');
+    background-image: url('/static/images/main_picture_sveikuoliukas.png');
     background-size: contain;
     font-family: sans-serif;
-    font-size: 25px;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     margin: 0; padding: 0;
@@ -100,8 +100,8 @@ h2 {
 
 h3 {
     margin: -1.1%;
-    padding-left: 350px;
-    padding-right: 350px; 
+    padding-left: 250px;
+    padding-right: 250px; 
     font-size: 20px;
     font-weight: 1000;
     text-indent: 10px;
@@ -227,9 +227,9 @@ button, .button {
     border: 1 px solid #010c07;
     border-bottom: 2px solid #040404;
     padding: 0.5rem;
-    font-size: 90%;
+    font-size: 80%;
     cursor: pointer;
-    font-weight: 300;
+    font-weight: 800;
     margin-top: 1rem;
     margin: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
@@ -302,12 +302,14 @@ ul.dashboard li a:hover h3 {
 
 .post {
     border: 15px groove #062c0e;
-    font-size: 30px;
-    font-weight: 30px;
+    font-size: 25px;
+    font-weight: 25px;
     text-align: justify;
-    width: 1200px;
-    margin-left: 155px;
+    width: 1000px;
+    margin-left: 55px;
     box-sizing: border-box;
+    text-justify: inter-word;
+    overflow: auto;
 }
 
 .comment {
@@ -315,11 +317,12 @@ ul.dashboard li a:hover h3 {
     font-size: 20px;
     font-weight: 20px;
     text-align: justify;
-    width: 1000px;
+    width: 800px;
     margin-left: 250px;
     box-sizing: border-box;
     text-align: justify;
     text-justify: inter-word;
+    overflow: auto;
 }
 
 img {
@@ -330,7 +333,7 @@ img {
     border-radius: 8px;
 }
 
-.post_class {
+.post_list {
     border-radius: 4px;
 }
 
@@ -349,60 +352,36 @@ img {
     width: 100%;
     height: auto;
 }
-  
-input[type="radio"] {
-    display: none;
-}
-  
-.nav label {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin: 0 5px;
-    background-color: #062403;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-  
+   
 #slide1:checked ~ .mySlides#slide1,
 #slide2:checked ~ .mySlides#slide2,
 #slide3:checked ~ .mySlides#slide3 {
     display: block;
 }
   
-#slide1:checked ~ .nav label[for="slide1"],
-#slide2:checked ~ .nav label[for="slide2"],
-#slide3:checked ~ .nav label[for="slide3"] {
-    background-color: #1ab343;
-}
-
 .chat_room {
     border: 10px groove #154f21;
-    font-size: 30px;
-    font-weight: 30px;
+    font-size: 20px;
     text-align: justify;
-    width: 1200px;
+    width: 800px;
     margin-left: 155px;
     box-sizing: border-box;
+    overflow: auto;
 }
 
 .chat_room2 {
     border: 10px groove #154f21;
-    font-size: 30px;
-    font-weight: 30px;
+    font-size: 20px;
     text-align: justify;
-    width: 1200px;
+    width: 800px;
     margin-left: 155px;
     box-sizing: border-box;
+    overflow: auto;
 }
 
 .box-meniu {
-    display: flex;   
-    justify-content: space-between; 
-    border: 5px groove #154f21;
-    font-weight: 10px;
+    display: flex;    
+    border: 5px groove #154f21;  
     text-align: left;
-    width: 1200px;
+    width: 1010px;
 }
-
