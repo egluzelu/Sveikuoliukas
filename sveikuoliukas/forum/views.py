@@ -46,10 +46,6 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView
 
 def post_list(request: HttpRequest) -> HttpResponse:
     queryset = models.Post.objects
-    owner_username = request.GET.get('owner')
-    if owner_username:
-        owner = get_object_or_404(get_user_model(), username=owner_username)
-        queryset = queryset.filter(owner=owner)
     search_name = request.GET.get('search_name')
     if search_name:
         queryset = queryset.filter(name__icontains=search_name)
@@ -80,9 +76,10 @@ class PostDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        page = self.request.GET.get('page', 1)
-        comments_queryset = models.Comment.objects.filter(post=self.object)
+        post = self.get_object()
+        comments_queryset = models.Comment.objects.filter(post=post)
         paginator = Paginator(comments_queryset, 5)
+        page = self.request.GET.get('page', 1)
 
         try:
             comments = paginator.page(page)
@@ -91,27 +88,11 @@ class PostDetailView(generic.DetailView):
         except EmptyPage:
             comments = paginator.page(paginator.num_pages)
 
-        context['comment_list'] = comments
+        context['post_comments'] = comments
         context['comment_form'] = CommentForm()
 
         return context
-    
-
-class CommentListView(generic.ListView):
-    model = models.Comment
-    template_name = 'forum/comment_list.html'
-    fields = ('name', 'description', 'image')
-    paginate_by = 5
-
-    def get_queryset(self):
-        post = get_object_or_404(models.Post, pk=self.kwargs['pk'])
-        return models.Comment.objects.filter(post=post)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['post'] = get_object_or_404(models.Post, pk=self.kwargs['pk'])
-        return context
-        
+            
 
 class CommentCreateView(LoginRequiredMixin, generic.CreateView):
     model = models.Comment
@@ -130,7 +111,7 @@ class CommentCreateView(LoginRequiredMixin, generic.CreateView):
         return reverse('post_detail', kwargs={'pk': self.kwargs['pk']})
     
 
-class CommentUpdateView(LoginRequiredMixin,UserPassesTestMixin,generic.UpdateView):
+class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = models.Comment
     template_name = 'forum/comment_update.html'
     fields = ('body', 'image')

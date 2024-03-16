@@ -1,5 +1,5 @@
 {% extends "base.html" %}{% load static i18n %}
-{% block title %}{{ object }} {% trans "at" %} {{ block.super }}{% endblock title %}
+{% block title %}{{ object }} {% trans "at" %} | {{ block.super }} {% endblock title %}
 {% block content %}
 <h1>{% trans "user"|title %} {{ object.username }} {% trans "profile" %}</h1>
 <div class="box">

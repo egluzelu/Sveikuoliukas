@@ -1,5 +1,5 @@
 {% extends "base.html" %}{% load i18n %}
-{% block title %}{% trans "create a message at"|capfirst %} {{ block.super }}{% endblock title %}
+{% block title %}{% trans "create a message at"|capfirst %} | {{ block.super }}{% endblock title %}
   {% block content %}
     <h1>{% trans "Create a message" %}</h1>
     <form method="post" action="{{ request.path }}" enctype="multipart/form-data">

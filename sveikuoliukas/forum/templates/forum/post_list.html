@@ -1,5 +1,5 @@
 {% extends "base.html" %}{% load i18n %} {% load static %}
-{% block title %}{{ block.super }} {% trans "list" %}{% endblock title %}
+{% block title %} {% trans "list" %} | {{ block.super }} {% endblock title %}
 {% block content %}
 <h1>{% trans "posts"|capfirst %}</h1>
 <a class="button" style="float:right;" href="{% url "post_create" %}">{% trans "create new post"|capfirst %}</a>

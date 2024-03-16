@@ -1,5 +1,5 @@
 {% extends "base.html" %}{% load i18n %} {% load static %}
-{% block title %}{{ block.super }} {% trans "list" %}{% endblock title %}
+{% block title %} {% trans "list" %} | {{ block.super }} {% endblock title %}
 {% block content %}
 <h1>{% trans "received messages"|capfirst %}</h1>
 <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a class="button" href="{% url "chat_create" %}">{% trans "create a new message"|capfirst %}</a></p>
