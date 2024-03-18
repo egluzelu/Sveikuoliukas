@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-14 10:33+0200\n"
+"POT-Creation-Date: 2024-03-18 08:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,14 +23,6 @@ msgstr ""
 #: board_main/apps.py:10
 msgid "board_main"
 msgstr "Pagrindinis puslapis"
-
-#: board_main/models.py:6
-msgid "title"
-msgstr "pavadinimas"
-
-#: board_main/models.py:7
-msgid "description"
-msgstr "aprašymas"
 
 #: board_main/templates/base.html:6
 msgid "welcome to forum"
@@ -88,16 +80,15 @@ msgid ""
 "lifestyle or looking for useful advices and suggestions on how and what to "
 "do, or maybe just looking for words of support, join now!"
 msgstr ""
-"Kiekvienas iš mūsų esame kažkiek ydingi, bet tai neprivalo mūsų "
-"stabdytigyventi sveikiau! Vieni nori pradėti sportuoti, bet negali "
-"prisiversti;kiti -  mesti rūkyti, bet trūksta palaikymo; treti trokšta "
-"numesti svorio,bet jokios dietos neveikia.. Čia tik populiariausi pavyzdžiai "
-"ko žmoguireikia, kad gyvent sveikiau, bet norų būna įvairiausių! Taip "
-"atsirado ir šisforumas 'Sveikuoliukas', kuriame galima bendrauti "
-"įvairiausiomis temomis,susijusiomis su sveika gyvensena. Jei nori pakeisti "
-"savo gyvenimo būdą,ieškai naudingo patarimo, pasiūlymų kaip ir ko imtis, ar "
-"tiesiogpaprasčiausių palaikymo žodžių, prisijunk jau dabar ir bendrauk "
-"drąsiai!"
+"Kiekvienas iš mūsų esame kažkiek ydingi, bet tai neprivalo mūsų stabdyti "
+"gyventi sveikiau! Vieni nori pradėti sportuoti, bet negali prisiversti; kiti "
+"-  mesti rūkyti, bet trūksta palaikymo; treti trokšta numesti svorio, bet "
+"jokios dietos neveikia.. Čia tik populiariausi pavyzdžiai ko žmogui reikia, "
+"kad gyvent sveikiau, bet norų būna įvairiausių! Taip atsirado ir šis forumas "
+"'Sveikuoliukas', kuriame galima bendrauti įvairiausiomis temomis, "
+"susijusiomis su sveika gyvensena. Jei nori pakeisti savo gyvenimo būdą, "
+"ieškai naudingo patarimo, pasiūlymų kaip ir ko imtis, ar tiesiog "
+"paprasčiausių palaikymo žodžių, prisijunk jau dabar ir bendrauk drąsiai!"
 
 #: board_main/templates/board_main/index.html:9
 msgid "Maybe it's time to start living healthier..?"
@@ -122,3 +113,9 @@ msgstr "Iš viso pranešimų šiuo metu:"
 #: board_main/templates/board_main/index.html:39
 msgid "Total comments at this time:"
 msgstr "Iš viso komentarų šiuo metu:"
+
+#~ msgid "title"
+#~ msgstr "pavadinimas"
+
+#~ msgid "description"
+#~ msgstr "aprašymas"

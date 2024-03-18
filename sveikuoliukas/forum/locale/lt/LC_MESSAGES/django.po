@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-15 14:54+0200\n"
+"POT-Creation-Date: 2024-03-18 08:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,7 +95,7 @@ msgstr "sukurti"
 
 #: forum/templates/forum/comment_create.html:10
 #: forum/templates/forum/comment_update.html:10
-#: forum/templates/forum/post_detail.html:38
+#: forum/templates/forum/post_detail.html:39
 msgid "comment Image"
 msgstr "komentaro paveikslėlis"
 
@@ -138,12 +138,12 @@ msgid "profile picture"
 msgstr "profilio nuotrauka"
 
 #: forum/templates/forum/post_detail.html:18
-#: forum/templates/forum/post_detail.html:42
+#: forum/templates/forum/post_detail.html:43
 msgid "created"
 msgstr "sukurtas"
 
 #: forum/templates/forum/post_detail.html:19
-#: forum/templates/forum/post_detail.html:42
+#: forum/templates/forum/post_detail.html:43
 msgid "updated"
 msgstr "atnaujintas"
 
@@ -151,19 +151,19 @@ msgstr "atnaujintas"
 msgid "edit this post"
 msgstr "redaguoti šį pranešimą"
 
-#: forum/templates/forum/post_detail.html:30
+#: forum/templates/forum/post_detail.html:31
 msgid "comment maker:"
 msgstr "komentaro kūrėjas:"
 
-#: forum/templates/forum/post_detail.html:32
+#: forum/templates/forum/post_detail.html:33
 msgid "profile Picture"
 msgstr "profilio nuotrauka"
 
-#: forum/templates/forum/post_detail.html:45
+#: forum/templates/forum/post_detail.html:46
 msgid "edit this comment"
 msgstr "redaguoti šį komentarą"
 
-#: forum/templates/forum/post_detail.html:73
+#: forum/templates/forum/post_detail.html:74
 msgid "create new comment"
 msgstr "sukurti naują komentarą"
 
@@ -195,14 +195,14 @@ msgstr "redaguoti pranešimą"
 msgid "post created succesfully"
 msgstr "pranešimas sukurtas sėkmingai"
 
-#: forum/views.py:43
+#: forum/views.py:40
 msgid "post updated succesfully"
 msgstr "pranešimas atnaujintas sėkmingai"
 
-#: forum/views.py:132
+#: forum/views.py:110
 msgid "comment created succesfully"
 msgstr "komentaras sukurtas sėkmingai"
 
-#: forum/views.py:146
+#: forum/views.py:121
 msgid "comment updated succesfully"
 msgstr "komentaras atnaujintas sėkmingai"
