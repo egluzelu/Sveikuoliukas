@@ -1,2 +1,2 @@
 # Sveikuoliukas
-Tapk sveikas ir laimingas!
+Web framework for chatroom (forum)
